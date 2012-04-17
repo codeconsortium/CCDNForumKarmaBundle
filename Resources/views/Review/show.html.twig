@@ -1,0 +1,105 @@
+{% extends param('ccdn_forum_karma.review.layout_templates.review_all') %}
+
+{% block stylesheets %}
+	{{ parent() }}
+	<link href="{{ asset('bundles/ccdncomponentcrumbtrail/css/crumbs.css') }}" rel="stylesheet" type="text/css">
+	<link href="{{ asset('bundles/ccdncomponentbbcode/css/bbcode.css') }}" rel="stylesheet" type="text/css">
+{% endblock %}
+
+{% block title %}{{ 'title.karma' | trans({}, 'CCDNForumKarmaBundle' ) }}{% endblock %}
+
+{% block sidebar %}
+	{% if is_granted('ROLE_MODERATOR') %}
+	<div class="sidebar">
+		<div class="sidebar_header"><span class="sidebar_header">{{ 'sidebar.header.special' | trans({}, 'CCDNComponentCommonBundle') }}</span></div>
+		<div class="sidebar_panel"><a class="sidebar" href="{{ path('cc_moderator_forum_cp') }}">{{ 'general.view.link_moderate' | trans({}, 'CCDNComponentCommonBundle') }}</a></div>
+		{% if is_granted('ROLE_ADMIN') %}
+		<div class="sidebar_panel"><a class="sidebar" href="{{ path('cc_admin_forum_cp') }}">{{ 'general.view.link_administrate' | trans({}, 'CCDNComponentCommonBundle') }}</a></div>
+		{% endif %}
+	</div>
+	{% endif %}
+
+{% endblock %}
+
+{% block body %}
+
+{% include 'CCDNComponentCrumbTrailBundle:Trail:trail.html.twig' with {'crumbs': crumbs } %}
+
+{% include 'CCDNComponentCommonBundle:Flashes:flashes.html.twig' %}
+
+<div class="section_wrap_square">
+	<div class="section_header">
+		<h2>{{ 'title.karma' | trans({}, 'CCDNForumKarmaBundle' ) }}</h2>
+	</div>
+	
+	{% if pager.haveToPaginate %}
+	<div class="pagerfanta">
+	    {{ pagerfanta(pager, 'default', {'routeName':'cc_forum_karma_show_all_paginated', 'routeParams':{}} ) }}
+	</div>
+	{% endif %}
+	<div class="section_table_panel">
+		<table class="common_list">
+			<thead>
+				<tr>
+					<th class="icon"></th>
+					<th class="center" style="width: 50px;"></th>
+					<th class="center" style="width: 50px;"><span class="table_header">#</span></th>
+					<th class="left"><span class="table_header">{{ 'board.table.head.topic_title' |trans({}, 'CCDNForumForumBundle') }}</span></th>
+					<th class="center" style="width: 200px;"><span class="table_header">{{ 'actioned.at' |trans({}, 'CCDNForumForumBundle') }}</span></th>
+				</tr>
+			</thead>
+			<tbody>
+			{% for row, review in pager.getCurrentPageResults %}
+					<tr class="{{ cycle(['row_odd', 'row_even'], row) }}">
+						<td class="icon16">
+							<img class="icon16" width="16" height="16" src="{{ asset('bundles/ccdncomponentcommon/images/icons/Black/16x16/16x16_communication.png') }}" alt="icon">
+						</td>
+						<td class="center">
+							<img class="icon16" width="16" height="16" src="{{ asset('bundles/ccdncomponentcommon/images/icons/Black/16x16/16x16_karma.png') }}" alt="icon">&nbsp;
+							{% if review.isPositive %}
+							<span class="table_data" style="color: #00FF00 !important;">+1</span>
+							{% else %}
+							<span class="table_data" style="color: #FF0000 !important;">-1</span>
+							{% endif %}
+						</td>
+						<td class="center">
+							<span class="table_data">{{ review.getPost().getId() }}</span>
+						</td>
+						<td class="left">
+							<span class="table_data">{{ review.getPost().getTopic().getTitle() }}</span>
+						</td>
+						<td class="center">
+							<span class="table_data">
+							{{ review.getPostedDate|date("d/m/Y - H:i:s") }}
+							</span>
+						</td>
+					</tr>
+					<tr class="{{ cycle(['row_odd', 'row_even'], row) }}">
+						<td class="left" colspan="5">
+							<div class="round_box">
+								<span class="common_body">
+								{{ BBCode(review.comment | raw) | raw }}
+								</span>
+							</div>
+						</td>
+					</tr>
+			{% else %}
+				<tr>
+					<td class="center" colspan="5">
+						<span class="table_empty">{{ 'karma.table.empty' | trans({}, 'CCDNForumKarmaBundle') }}</span>
+					</td>
+				</tr>
+			{% endfor %}
+			</tbody>
+		</table>
+	</div>
+	{% if pager.haveToPaginate %}
+	<div class="pagerfanta">
+	    {{ pagerfanta(pager, 'default', {'routeName':'cc_forum_karma_show_all_paginated', 'routeParams':{}} ) }}
+	</div>
+	{% endif %}
+</div>
+
+{% include 'CCDNComponentCrumbTrailBundle:Trail:trail.html.twig' with {'crumbs': crumbs } %}
+
+{% endblock %}

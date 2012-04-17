@@ -1,0 +1,79 @@
+{% extends param('ccdn_forum_karma.rate.layout_templates.rate') %}
+
+{% block stylesheets %}
+	{{ parent() }}
+	<link href="{{ asset('bundles/ccdncomponentcrumbtrail/css/crumbs.css') }}" rel="stylesheet" type="text/css">
+	<link href="{{ asset('bundles/ccdncomponentbbcode/css/bbcode.css') }}" rel="stylesheet" type="text/css">
+{% endblock %}
+
+{% block javascripts %}
+	{{ parent() }}
+	<script src="{{ asset('bundles/ccdncomponentbbcode/js/jquery.bbcode.js') }}" type="text/javascript"></script>
+{% endblock %}
+
+{% block title %}{{ 'title.karma.rate' | trans({'%post_id%': post.getId }, 'CCDNForumKarmaBundle') }}{% endblock %}
+
+{% block sidebar %}
+	{% if is_granted('ROLE_MODERATOR') %}
+	<div class="sidebar">
+		<div class="sidebar_header"><span class="sidebar_header">{{ 'sidebar.header.special' | trans({}, 'CCDNComponentCommonBundle') }}</span></div>
+		<div class="sidebar_panel"><a class="sidebar" href="{{ path('cc_moderator_forum_cp') }}">{{ 'general.view.link_moderate' | trans({}, 'CCDNComponentCommonBundle') }}</a></div>
+		{% if is_granted('ROLE_ADMIN') %}
+		<div class="sidebar_panel"><a class="sidebar" href="{{ path('cc_admin_forum_cp') }}">{{ 'general.view.link_administrate' | trans({}, 'CCDNComponentCommonBundle') }}</a></div>
+		{% endif %}
+	</div>
+	{% endif %}
+
+{% endblock %}
+
+{% block body %}
+
+{% include 'CCDNComponentCrumbTrailBundle:Trail:trail.html.twig' with {'crumbs': crumbs } %}
+
+{% include 'CCDNComponentCommonBundle:Flashes:flashes.html.twig' %}
+
+<div class="section_wrap_square">
+	<div class="section_header">
+		<h2>{{ 'title.karma.rate' | trans({'%post_id%': post.getId }, 'CCDNForumKarmaBundle') }}</h2>
+	</div>
+	
+	<div class="section_table_panel">
+		{% form_theme form param('ccdn_forum_karma.template.theme') %}
+		<form action="{{ path('cc_forum_karma_rate', { 'post_id': post.id } ) }}" method="post" {{ form_enctype(form) }}>
+			{{ form_row(form._token) }}
+			<div class="errors">{{ form_errors(form) }}</div>
+			<table class="common_list">
+				<tbody>
+					<tr class="{{ cycler(['row_odd', 'row_even'], 'cycle') }}">
+						<td class="form_label"><label class="widget_label">{{ 'form.label.topic.title' | trans| trans({}, 'CCDNForumForumBundle') }}</label></td>
+						<td class="form_widget"><span class="table_data">{{ post.getTopic.getTitle }}</span></td>
+					</tr>
+					<tr class="{{ cycler(['row_odd', 'row_even'], 'cycle') }}">
+						<td class="form_label">{{ form_label(form.comment, null, { 'label': 'form.label.karma.comment'| trans({}, 'CCDNForumKarmaBundle') }) }}</td>
+						<td class="form_widget">
+							{{ form_errors(form.comment) }}
+							{% form_theme form 'CCDNComponentBBCodeBundle:Form:fields.html.twig' %}
+							{{ form_widget(form.comment) }}
+						</td>
+					</tr>
+					<tr class="{{ cycler(['row_odd', 'row_even'], 'cycle') }}">
+						<td class="form_label">{{ form_label(form.is_positive, null, { 'label': 'form.label.karma.is_positive'| trans({}, 'CCDNForumKarmaBundle') }) }}</td>
+						<td class="form_widget">
+							{{ form_errors(form.is_positive) }}
+							{{ form_widget(form.is_positive) }}
+						</td>
+					</tr>
+					<tr class="{{ cycler(['row_odd', 'row_even'], 'cycle') }}">
+						<td class="form_tool_strip" colspan="2">
+							<input type="submit" class="widget_submit_prominent" value="{{ 'form.button.karma.submit' | trans({}, 'CCDNForumKarmaBundle') }}">
+						</td>
+					</tr>
+				</tbody>
+			</table>
+		</form>
+	</div>
+</div>
+
+{% include 'CCDNComponentCrumbTrailBundle:Trail:trail.html.twig' with {'crumbs': crumbs } %}
+
+{% endblock %}

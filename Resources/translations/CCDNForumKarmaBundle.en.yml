@@ -1,0 +1,17 @@
+title.karma: Karma
+title.karma.rate: 'Rate post #%post_id%'
+
+crumbs.karma: Karma
+crumbs.karma.rate: 'Rate post #%post_id%'
+
+link.post.rate: 'Rate this post'
+
+flash.karma.rate.success: 'You rated post #%post_id% for topic "%topic_title%".'
+
+karma.table.empty: 'You have no ratings yet, post something useful to get feedback.'
+
+karma.comment: 'Comment'
+
+form.label.karma.comment: 'Comment:'
+form.label.karma.is_positive: 'Karma:'
+form.button.karma.submit: 'Submit'
