@@ -35,8 +35,8 @@
 	<div class="section_table_panel">
 		<table class="common_list">
 			<tr class="row_odd">
-				<td class="center" style="width: 50%;"><span class="table_data" style="color: #00FF00 !important;">+{{ registries[user.getId()].getCacheKarmaPositiveCount }}</span></td>
-				<td class="center" style="width: 50%;"><span class="table_data" style="color: #FF0000 !important;">-{{ registries[user.getId()].getCacheKarmaNegativeCount }}</span></td>
+				<td class="center" style="width: 50%;"><span class="table_header" style="color: #4fd111 !important;">+{{ registries[user.getId()].getCacheKarmaPositiveCount }}</span></td>
+				<td class="center" style="width: 50%;"><span class="table_header" style="color: #FF0000 !important;">-{{ registries[user.getId()].getCacheKarmaNegativeCount }}</span></td>
 			</tr>
 		</table>
 	</div>
@@ -66,7 +66,7 @@
 						<td class="center">
 							<img class="icon16" width="16" height="16" src="{{ asset('bundles/ccdncomponentcommon/images/icons/Black/16x16/16x16_karma.png') }}" alt="icon">&nbsp;
 							{% if review.isPositive %}
-							<span class="table_data" style="color: #00FF00 !important;">+1</span>
+							<span class="table_data" style="color: #4fd111 !important;">+1</span>
 							{% else %}
 							<span class="table_data" style="color: #FF0000 !important;">-1</span>
 							{% endif %}
