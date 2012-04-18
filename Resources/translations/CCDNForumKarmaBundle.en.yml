@@ -1,5 +1,5 @@
-title.karma: Karma
-title.karma.rate: 'Rate post #%post_id%'
+title.karma: 'Karma.'
+title.karma.rate: 'Rate post #%post_id%.'
 
 crumbs.karma: Karma
 crumbs.karma.rate: 'Rate post #%post_id%'
