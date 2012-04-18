@@ -33,7 +33,7 @@ class KarmaManager extends BaseManager implements ManagerInterface
 	public function flushNow()
 	{
 		parent::flushNow();
-		
+
 //		$user = $this->container->get('security.context')->getToken()->getUser();
 
 //		$this->container->get('ccdn_forum_forum.registry.manager')->updateCachePostCountForUser($user);
@@ -51,6 +51,8 @@ class KarmaManager extends BaseManager implements ManagerInterface
 	{
 		// insert a new row
 		$this->persist($karma)->flushNow();
+
+		$this->container->get('ccdn_forum_forum.registry.manager')->updateCacheKarmaCountForUser($karma->getForUser());
 		
 		return $this;
 	}	

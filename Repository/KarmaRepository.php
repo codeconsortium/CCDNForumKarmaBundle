@@ -39,4 +39,45 @@ class KarmaRepository extends EntityRepository
 	        return null;
 	    }
 	}
+	
+	
+	
+	/**
+	 *
+	 *
+	 */
+	public function getKarmaCountForUserById($user_id)
+	{
+		
+		$kpQuery = $this->getEntityManager()
+			->createQuery('	
+				SELECT COUNT(kp.id) AS karmaPositiveCount
+				FROM CCDNForumKarmaBundle:Karma kp
+				WHERE kp.for_user = :id AND kp.is_positive = TRUE')
+			->setParameter('id', $user_id);
+			
+		$knQuery = $this->getEntityManager()
+			->createQuery('
+				SELECT COUNT(kn.id) AS karmaNegativeCount
+				FROM CCDNForumKarmaBundle:Karma kn
+				WHERE kn.for_user = :id AND kn.is_positive = FALSE')
+			->setParameter('id', $user_id);
+			
+			
+		try {
+	        $kp = $kpQuery->getsingleResult();
+	    } catch (\Doctrine\ORM\NoResultException $e) {
+	        $kp = null;
+	    }
+
+		try {
+	        $kn = $knQuery->getsingleResult();
+	    } catch (\Doctrine\ORM\NoResultException $e) {
+	        $kn = null;
+	    }
+
+		return array_merge($kp, $kn);
+	
+	}
+	
 }

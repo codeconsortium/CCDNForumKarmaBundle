@@ -63,10 +63,16 @@
 							{% endif %}
 						</td>
 						<td class="center">
-							<span class="table_data">{{ review.getPost().getId() }}</span>
+							{% if review.getPost() %}
+								<span class="table_data">{{ review.getPost().getId() }}</span>
+							{% endif %}
 						</td>
 						<td class="left">
-							<span class="table_data">{{ review.getPost().getTopic().getTitle() }}</span>
+							{% if review.getPost() %}
+								{% if review.getPost().getTopic() %}
+									<span class="table_data">{{ review.getPost().getTopic().getTitle() }}</span>
+								{% endif %}
+							{% endif %}
 						</td>
 						<td class="center">
 							<span class="table_data">

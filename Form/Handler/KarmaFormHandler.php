@@ -124,6 +124,7 @@ class KarmaFormHandler
 		{
 			$formData = $this->form->getData();
 
+			$formData->setPost($this->defaults['post']);
 			$formData->setForUser($this->defaults['for_user']);
 			$formData->setPostedBy($this->defaults['by_user']);
 			$formData->setPostedDate(new \DateTime());
