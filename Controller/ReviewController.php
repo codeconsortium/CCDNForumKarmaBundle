@@ -49,6 +49,11 @@ class ReviewController extends ContainerAware
 		$karma_paginated->setMaxPerPage($karma_per_page);
 		$karma_paginated->setCurrentPage($page, false, true);
 		
+		//
+		// Get registry for user
+		//		
+		$registries = $this->container->get('ccdn_forum_forum.registry.manager')->getRegistriesForUsersAsArray(array($user->getId()));
+		
 		// setup crumb trail.
 		$crumb_trail = $this->container->get('ccdn_component_crumb_trail.crumb_trail')
 			->add($this->container->get('translator')->trans('crumbs.dashboard', array(), 'CCDNForumForumBundle'), $this->container->get('router')->generate('cc_dashboard_index'), "sitemap")
@@ -59,6 +64,7 @@ class ReviewController extends ContainerAware
 			'user' => $user,
 			'crumbs' => $crumb_trail,
 			'pager' => $karma_paginated,
+			'registries' => $registries,
 		));
 	}
 	

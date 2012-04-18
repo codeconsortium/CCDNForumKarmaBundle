@@ -32,6 +32,15 @@
 		<h2>{{ 'title.karma' | trans({}, 'CCDNForumKarmaBundle' ) }}</h2>
 	</div>
 	
+	<div class="section_table_panel">
+		<table class="common_list">
+			<tr class="row_odd">
+				<td class="center" style="width: 50%;"><span class="table_data" style="color: #00FF00 !important;">+{{ registries[user.getId()].getCacheKarmaPositiveCount }}</span></td>
+				<td class="center" style="width: 50%;"><span class="table_data" style="color: #FF0000 !important;">-{{ registries[user.getId()].getCacheKarmaNegativeCount }}</span></td>
+			</tr>
+		</table>
+	</div>
+	
 	{% if pager.haveToPaginate %}
 	<div class="pagerfanta">
 	    {{ pagerfanta(pager, 'default', {'routeName':'cc_forum_karma_show_all_paginated', 'routeParams':{}} ) }}
