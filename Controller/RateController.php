@@ -56,7 +56,15 @@ class RateController extends ContainerAware
 		}
 		
 		//
-		// Set the form handler options
+		// You cannot rate yourself.
+		//
+		if ($post->getCreatedBy()->getId() == $user->getId())
+		{
+			throw new AccessDeniedException('You cannot rate yourself.');
+		}
+		
+		//
+		// Set the form handler options.
 		//
 		$options = array('post' => $post, 'for_user' => $post->getCreatedBy(), 'by_user' => $user);
 	
