@@ -51,14 +51,14 @@ class KarmaRepository extends EntityRepository
 		
 		$kpQuery = $this->getEntityManager()
 			->createQuery('	
-				SELECT COUNT(kp.id) AS karmaPositiveCount
+				SELECT COUNT(kp.id) AS positiveCount
 				FROM CCDNForumKarmaBundle:Karma kp
 				WHERE kp.for_user = :id AND kp.is_positive = TRUE')
 			->setParameter('id', $user_id);
 			
 		$knQuery = $this->getEntityManager()
 			->createQuery('
-				SELECT COUNT(kn.id) AS karmaNegativeCount
+				SELECT COUNT(kn.id) AS negativeCount
 				FROM CCDNForumKarmaBundle:Karma kn
 				WHERE kn.for_user = :id AND kn.is_positive = FALSE')
 			->setParameter('id', $user_id);
