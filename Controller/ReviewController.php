@@ -55,7 +55,7 @@ class ReviewController extends ContainerAware
 		$registries = $this->container->get('ccdn_forum_forum.registry.manager')->getRegistriesForUsersAsArray(array($user->getId()));
 		
 		// setup crumb trail.
-		$crumb_trail = $this->container->get('ccdn_component_crumb_trail.crumb_trail')
+		$crumb_trail = $this->container->get('ccdn_component_crumb.trail')
 			->add($this->container->get('translator')->trans('crumbs.dashboard', array(), 'CCDNForumForumBundle'), $this->container->get('router')->generate('cc_dashboard_index'), "sitemap")
 			->add($this->container->get('translator')->trans('crumbs.karma', array(), 'CCDNForumKarmaBundle'), $this->container->get('router')->generate('cc_forum_karma_show_all'), "home");
 
