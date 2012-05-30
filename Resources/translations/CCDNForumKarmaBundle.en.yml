@@ -6,7 +6,7 @@ crumbs.karma.rate: 'Rate post #%post_id%'
 
 link.post.rate: 'Rate this post'
 
-flash.karma.rate.success: 'You rated post #%post_id% for topic "%topic_title%".'
+flash.karma.rate.success: 'You rated post #%post_id% for topic: %topic_title%.'
 
 karma.table.empty: 'You have no ratings yet, post something useful to get feedback.'
 
