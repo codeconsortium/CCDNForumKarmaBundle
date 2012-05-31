@@ -103,6 +103,7 @@ ccdn_forum_karma:
         theme: CCDNForumKarmaBundle:Form:fields.html.twig
     review:
         reviews_per_page: 40
+        truncate_topic_title: 70
         layout_templates:
             review_all: CCDNComponentCommonBundle:Layout:layout_body_left.html.twig
     rate:

@@ -75,7 +75,7 @@
 						<td class="left">
 							{% if review.getPost() %}
 								{% if review.getPost().getTopic() %}
-									<span class="table_data">{{ review.getPost().getTopic().getTitle() }}</span>
+									<span class="table_data">{{ truncDot(review.getPost().getTopic().getTitle(), param('ccdn_forum_karma.review.truncate_topic_title')) }}</span>
 								{% endif %}
 							{% endif %}
 						</td>

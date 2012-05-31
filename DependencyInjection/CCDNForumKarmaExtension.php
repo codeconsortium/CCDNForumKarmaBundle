@@ -69,6 +69,7 @@ class CCDNForumKarmaExtension extends Extension
 	private function getReviewSection($container, $config)
 	{
 		$container->setParameter('ccdn_forum_karma.review.reviews_per_page', $config['review']['reviews_per_page']);
+		$container->setParameter('ccdn_forum_karma.review.truncate_topic_title', $config['review']['truncate_topic_title']);
 		$container->setParameter('ccdn_forum_karma.review.layout_templates.review_all', $config['review']['layout_templates']['review_all']);		
 	}
 	

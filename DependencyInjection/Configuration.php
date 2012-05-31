@@ -75,6 +75,7 @@ class Configuration implements ConfigurationInterface
 				->arrayNode('review')
 					->children()
 						->scalarNode('reviews_per_page')->defaultValue('40')->end()
+						->scalarNode('truncate_topic_title')->defaultValue('70')->end()
 						->arrayNode('layout_templates')
 							->children()
 								->scalarNode('review_all')->defaultValue('CCDNComponentCommonBundle:Layout:layout_body_left.html.twig')->end()
