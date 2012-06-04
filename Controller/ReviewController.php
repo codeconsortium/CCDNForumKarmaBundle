@@ -45,7 +45,7 @@ class ReviewController extends ContainerAware
 
 		$karma_paginated = $this->container->get('ccdn_forum_karma.karma.repository')->findKarmaForUserById($user->getId());
 			
-		$karma_per_page = $this->container->getParameter('ccdn_forum_karma.review.reviews_per_page');
+		$karma_per_page = $this->container->getParameter('ccdn_forum_karma.review.review_all.reviews_per_page');
 		$karma_paginated->setMaxPerPage($karma_per_page);
 		$karma_paginated->setCurrentPage($page, false, true);
 		
@@ -56,7 +56,6 @@ class ReviewController extends ContainerAware
 		
 		// setup crumb trail.
 		$crumb_trail = $this->container->get('ccdn_component_crumb.trail')
-			->add($this->container->get('translator')->trans('crumbs.dashboard', array(), 'CCDNForumForumBundle'), $this->container->get('router')->generate('cc_dashboard_index'), "sitemap")
 			->add($this->container->get('translator')->trans('crumbs.karma', array(), 'CCDNForumKarmaBundle'), $this->container->get('router')->generate('cc_forum_karma_show_all'), "home");
 
 		return $this->container->get('templating')->renderResponse('CCDNForumKarmaBundle:Review:show.html.' . $this->getEngine(), array(

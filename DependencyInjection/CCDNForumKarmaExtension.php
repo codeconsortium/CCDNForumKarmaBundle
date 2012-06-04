@@ -43,7 +43,6 @@ class CCDNForumKarmaExtension extends Extension
 
 
 		$container->setParameter('ccdn_forum_karma.template.engine', $config['template']['engine']);
-		$container->setParameter('ccdn_forum_karma.template.theme', $config['template']['theme']);
 		$container->setParameter('ccdn_forum_karma.user.profile_route', $config['user']['profile_route']);
 		
 		$this->getReviewSection($container, $config);
@@ -68,9 +67,10 @@ class CCDNForumKarmaExtension extends Extension
 	 */
 	private function getReviewSection($container, $config)
 	{
-		$container->setParameter('ccdn_forum_karma.review.reviews_per_page', $config['review']['reviews_per_page']);
-		$container->setParameter('ccdn_forum_karma.review.truncate_topic_title', $config['review']['truncate_topic_title']);
-		$container->setParameter('ccdn_forum_karma.review.layout_templates.review_all', $config['review']['layout_templates']['review_all']);		
+		$container->setParameter('ccdn_forum_karma.review.review_all.reviews_per_page', $config['review']['review_all']['reviews_per_page']);
+		$container->setParameter('ccdn_forum_karma.review.review_all.topic_title_truncate', $config['review']['review_all']['topic_title_truncate']);
+		$container->setParameter('ccdn_forum_karma.review.review_all.layout_template', $config['review']['review_all']['layout_template']);		
+		$container->setParameter('ccdn_forum_karma.review.review_all.rating_datetime_format', $config['review']['review_all']['rating_datetime_format']);
 	}
 	
 	
@@ -82,7 +82,8 @@ class CCDNForumKarmaExtension extends Extension
 	 */
 	private function getRateSection($container, $config)
 	{
-		$container->setParameter('ccdn_forum_karma.rate.layout_templates.rate', $config['rate']['layout_templates']['rate']);		
+		$container->setParameter('ccdn_forum_karma.rate.rate.layout_template', $config['rate']['rate']['layout_template']);		
+		$container->setParameter('ccdn_forum_karma.rate.rate.form_theme', $config['rate']['rate']['form_theme']);
 	}
 	
 }

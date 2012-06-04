@@ -100,15 +100,6 @@ ccdn_forum_karma:
         profile_route: cc_profile_show_by_id 
     template:
         engine: twig
-        theme: CCDNForumKarmaBundle:Form:fields.html.twig
-    review:
-        reviews_per_page: 40
-        truncate_topic_title: 70
-        layout_templates:
-            review_all: CCDNComponentCommonBundle:Layout:layout_body_left.html.twig
-    rate:
-        layout_templates:
-            rate: CCDNComponentCommonBundle:Layout:layout_body_left.html.twig
 
 ```
 
@@ -155,4 +146,5 @@ Installation should now be complete!
 
 If you need further help/support, have suggestions or want to contribute please join the community at [Code Consortium](http://www.codeconsortium.com)
 
-[Return back to the docs index](http://github.com/codeconsortium/CCDNForumKarmaBundle/blob/master/Resources/doc/index.md).
+- [Return back to the docs index](index.md).
+- [Configuration Reference](configuration_reference.md).

@@ -1,4 +1,4 @@
-{% extends param('ccdn_forum_karma.review.layout_templates.review_all') %}
+{% extends param('ccdn_forum_karma.review.review_all.layout_template') %}
 
 {% block stylesheets %}
 	{{ parent() }}
@@ -75,13 +75,13 @@
 						<td class="left">
 							{% if review.getPost() %}
 								{% if review.getPost().getTopic() %}
-									<span class="table_data">{{ truncDot(review.getPost().getTopic().getTitle(), param('ccdn_forum_karma.review.truncate_topic_title')) }}</span>
+									<span class="table_data">{{ truncDot(review.getPost().getTopic().getTitle(), param('ccdn_forum_karma.review.review_all.topic_title_truncate')) }}</span>
 								{% endif %}
 							{% endif %}
 						</td>
 						<td class="center">
-							<span class="table_data">
-							{{ review.getPostedDate|date("d/m/Y - H:i:s") }}
+							<span class="table_timestamp">
+							{{ review.getPostedDate |date(param('ccdn_forum_karma.review.review_all.rating_datetime_format')) }}
 							</span>
 						</td>
 					</tr>

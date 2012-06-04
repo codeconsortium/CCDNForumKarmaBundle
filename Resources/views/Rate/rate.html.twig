@@ -1,4 +1,4 @@
-{% extends param('ccdn_forum_karma.rate.layout_templates.rate') %}
+{% extends param('ccdn_forum_karma.rate.rate.layout_template') %}
 
 {% block stylesheets %}
 	{{ parent() }}
@@ -34,7 +34,7 @@
 
 <div class="section_wrap_standalone">	
 	<div class="section_table_panel">
-		{% form_theme form param('ccdn_forum_karma.template.theme') %}
+		{% form_theme form param('ccdn_forum_karma.rate.rate.form_theme') %}
 		<form action="{{ path('cc_forum_karma_rate', { 'post_id': post.id } ) }}" method="post" {{ form_enctype(form) }}>
 			{{ form_row(form._token) }}
 			<div class="errors">{{ form_errors(form) }}</div>
