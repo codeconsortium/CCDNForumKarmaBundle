@@ -20,58 +20,52 @@
 
 {% block body %}
 
-{% include 'CCDNComponentCommonBundle:Flashes:flashes.html.twig' %}
+	{% include 'CCDNComponentCommonBundle:Flashes:flashes.html.twig' %}
 
-<div class="section_wrap_top">
 	{% include 'CCDNComponentCrumbTrailBundle:Trail:trail.html.twig' with {'crumbs': crumbs } %}
-</div>
 
-<div class="section_wrap_bottom">
-	<div class="section_header">
-		<h2>{{ 'title.karma.rate' | trans({'%post_id%': post.getId }, 'CCDNForumKarmaBundle') }}</h2>
-	</div>
-</div>
+	<h2>{{ 'title.karma.rate' | trans({'%post_id%': post.getId }, 'CCDNForumKarmaBundle') }}</h2>
 
-<div class="section_wrap_standalone">	
-	<div class="section_table_panel">
+	<div class="well">
 		{% form_theme form param('ccdn_forum_karma.rate.rate.form_theme') %}
-		<form action="{{ path('cc_forum_karma_rate', { 'post_id': post.id } ) }}" method="post" {{ form_enctype(form) }}>
-			{{ form_row(form._token) }}
-			<div class="errors">{{ form_errors(form) }}</div>
-			<table class="common_list">
-				<tbody>
-					<tr class="{{ cycler(['row_odd', 'row_even'], 'cycle') }}">
-						<td class="form_label"><label class="widget_label">{{ 'form.label.topic.title' | trans| trans({}, 'CCDNForumForumBundle') }}</label></td>
-						<td class="form_widget"><span class="table_data">{{ post.getTopic.getTitle }}</span></td>
-					</tr>
-					<tr class="{{ cycler(['row_odd', 'row_even'], 'cycle') }}">
-						<td class="form_label">{{ form_label(form.comment, null, { 'label': 'form.label.karma.comment'| trans({}, 'CCDNForumKarmaBundle') }) }}</td>
-						<td class="form_widget">
-							{{ form_errors(form.comment) }}
-							{% form_theme form 'CCDNComponentBBCodeBundle:Form:fields.html.twig' %}
-							{{ form_widget(form.comment) }}
-						</td>
-					</tr>
-					<tr class="{{ cycler(['row_odd', 'row_even'], 'cycle') }}">
-						<td class="form_label">{{ form_label(form.is_positive, null, { 'label': 'form.label.karma.is_positive'| trans({}, 'CCDNForumKarmaBundle') }) }}</td>
-						<td class="form_widget">
-							{{ form_errors(form.is_positive) }}
-							{{ form_widget(form.is_positive) }}
-						</td>
-					</tr>
-					<tr class="{{ cycler(['row_odd', 'row_even'], 'cycle') }}">
-						<td class="form_tool_strip" colspan="2">
-							<input type="submit" class="button_blue" value="{{ 'form.button.karma.submit' | trans({}, 'CCDNForumKarmaBundle') }}">
-						</td>
-					</tr>
-				</tbody>
-			</table>
+		
+		<form action="{{ path('cc_forum_karma_rate', { 'post_id': post.id } ) }}" method="post" {{ form_enctype(form) }} class="form-horizontal">
+			<fieldset>
+				
+				<div class="control-group"><div class="controls row-fluid">{{ form_row(form._token) }}</div></div>
+			
+				<div class="control-group">
+					<label for="topic_title" class="control-label">{{ 'form.label.topic.title' | trans({}, 'CCDNForumForumBundle') }}</label>
+					<div class="controls row-fluid">
+						<input type="text" id="topic_title" value="{{ post.getTopic.getTitle }}" disabled class="input-xlarge span8">
+					</div>
+				</div>
+				
+				<div class="control-group">
+					{{ form_label(form.comment, null, { 'label': 'form.label.karma.comment'| trans({}, 'CCDNForumKarmaBundle') }) }}
+					<div class="controls row-fluid">
+						{{ form_errors(form.comment) }}
+					{#	{% form_theme form 'CCDNComponentBBCodeBundle:Form:fields.html.twig' %} #}
+						{{ form_widget(form.comment) }}
+					</div>
+				</div>
+				
+				<div class="control-group">
+					{{ form_label(form.is_positive, null, { 'label': 'form.label.karma.is_positive'| trans({}, 'CCDNForumKarmaBundle') }) }}
+					<div class="controls row-fluid">
+						{{ form_errors(form.is_positive) }}
+						{{ form_widget(form.is_positive) }}
+					</div>
+				</div>
+				
+				<div class="form-actions">
+					<input type="submit" class="btn btn-primary" value="{{ 'form.button.karma.submit' | trans({}, 'CCDNForumKarmaBundle') }}">
+				</div>
+				
+			</fieldset>
 		</form>
 	</div>
-</div>
 
-<div class="section_wrap_standalone">
 	{% include 'CCDNComponentCrumbTrailBundle:Trail:trail.html.twig' with {'crumbs': crumbs } %}
-</div>
 
 {% endblock %}
