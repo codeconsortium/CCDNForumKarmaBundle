@@ -36,6 +36,7 @@ KarmaBundle Provides the following features:
 2. Include comment on reason.
 3. Refers to the Post which was rated.
 4. Retrieve karma rating for showing on Post.
+5. Utilises Twitter-Bootstrap interface by default.
 
 Before installation of this bundle, you can download the [Sandbox](https://github.com/codeconsortium/CCDNSandBox) for testing/development and feature review, or alternatively see the product in use at [CodeConsortium](http://www.codeconsortium.com).
 
