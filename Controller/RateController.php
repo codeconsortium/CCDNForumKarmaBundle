@@ -86,6 +86,7 @@ class RateController extends ContainerAware
 			->add($this->container->get('translator')->trans('crumbs.forum_index', array(), 'CCDNForumForumBundle'), $this->container->get('router')->generate('cc_forum_category_index'), "home")
 			->add($category->getName(), $this->container->get('router')->generate('cc_forum_category_show', array('category_id' => $category->getId())), "category")
 			->add($board->getName(), $this->container->get('router')->generate('cc_forum_board_show', array('board_id' => $board->getId())), "board")
+			->add($topic->getTitle(), $this->container->get('router')->generate('cc_forum_topic_show', array('topic_id' => $topic->getId())), "topic")
 			->add($this->container->get('translator')->trans('crumbs.karma.rate', array('%post_id%' => $post->getId()), 'CCDNForumKarmaBundle'), $this->container->get('router')->generate('cc_forum_karma_rate', array('post_id' => $post->getId())), "karma");
 
 		return $this->container->get('templating')->renderResponse('CCDNForumKarmaBundle:Rate:rate.html.' . $this->getEngine(), array(
