@@ -72,7 +72,7 @@ class RateController extends ContainerAware
 	
 		if ($formHandler->process())	
 		{	
-			$this->container->get('session')->setFlash('notice', $this->container->get('translator')->trans('flash.karma.rate.success', array('%topic_title%' => $post->getTopic()->getTitle(), '%post_id%' => $post->getId()), 'CCDNForumKarmaBundle'));
+			$this->container->get('session')->setFlash('success', $this->container->get('translator')->trans('flash.karma.rate.success', array('%topic_title%' => $post->getTopic()->getTitle(), '%post_id%' => $post->getId()), 'CCDNForumKarmaBundle'));
 								
 			return new RedirectResponse($this->container->get('router')->generate('cc_forum_topic_show', array('topic_id' => $post->getTopic()->getId() )));
 		}
