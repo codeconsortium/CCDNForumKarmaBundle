@@ -27,10 +27,10 @@ class KarmaRepository extends EntityRepository
 		$query = $this->getEntityManager()
 			->createQuery('
 				SELECT k FROM CCDNForumKarmaBundle:Karma k
-				LEFT JOIN k.posted_by kc
-				LEFT JOIN k.for_user kf
-				WHERE k.for_user = :id
-				ORDER BY k.posted_date DESC')
+				LEFT JOIN k.ratingByUser kc
+				LEFT JOIN k.ratingForUser kf
+				WHERE k.ratingForUser = :id
+				ORDER BY k.postedDate DESC')
 			->setParameter('id', $userId);
 
 		try {
@@ -53,14 +53,14 @@ class KarmaRepository extends EntityRepository
 			->createQuery('	
 				SELECT COUNT(kp.id) AS karmaPositiveCount
 				FROM CCDNForumKarmaBundle:Karma kp
-				WHERE kp.for_user = :id AND kp.is_positive = TRUE')
+				WHERE kp.ratingForUser = :id AND kp.isPositive = TRUE')
 			->setParameter('id', $user_id);
 			
 		$knQuery = $this->getEntityManager()
 			->createQuery('
 				SELECT COUNT(kn.id) AS karmaNegativeCount
 				FROM CCDNForumKarmaBundle:Karma kn
-				WHERE kn.for_user = :id AND kn.is_positive = FALSE')
+				WHERE kn.ratingForUser = :id AND kn.isPositive = FALSE')
 			->setParameter('id', $user_id);
 			
 			

@@ -23,8 +23,8 @@
 	
 	<table class="table table-striped table-bordered">
 		<tr class="row_odd">
-			<td class="center" style="width: 50%;"><span class="table_header" style="color: #4fd111 !important;">+{{ registries[user.getId()].getCacheKarmaPositiveCount }}</span></td>
-			<td class="center" style="width: 50%;"><span class="table_header" style="color: #FF0000 !important;">-{{ registries[user.getId()].getCacheKarmaNegativeCount }}</span></td>
+			<td class="center" style="width: 50%;"><span class="table_header" style="color: #4fd111 !important;">+{{ registries[user.getId()].getCachedKarmaPositiveCount }}</span></td>
+			<td class="center" style="width: 50%;"><span class="table_header" style="color: #FF0000 !important;">-{{ registries[user.getId()].getCachedKarmaNegativeCount }}</span></td>
 		</tr>
 	</table>
 
@@ -69,7 +69,7 @@
 					{% endif %}
 				</td>
 				<td class="center">
-					{{ review.getPostedDate |date(param('ccdn_forum_karma.review.review_all.rating_datetime_format')) }}
+					<abbr class="timestamper" title="{{ review.getPostedDate |date('Y-m-d H:i:s T Z', 'Europe/London') }}">{{ review.getPostedDate |date(param('ccdn_forum_karma.review.review_all.rating_datetime_format')) }}</abbr>
 				</td>
 			</tr>
 			<tr class="{{ cycle(['row_odd', 'row_even'], row) }}">

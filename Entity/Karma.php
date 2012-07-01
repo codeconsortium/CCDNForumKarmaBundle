@@ -32,26 +32,26 @@ class Karma
 
 	/**
      * @ORM\ManyToOne(targetEntity="CCDNForum\ForumBundle\Entity\Post", cascade={"persist"})
-     * @ORM\JoinColumn(name="post_id", referencedColumnName="id", onDelete="SET NULL")
+     * @ORM\JoinColumn(name="fk_post_id", referencedColumnName="id", onDelete="SET NULL")
 	 */
-	protected $post;
-	
+	protected $post = null;
+
 	/**
      * @ORM\ManyToOne(targetEntity="CCDNUser\UserBundle\Entity\User")
-     * @ORM\JoinColumn(name="for_user_id", referencedColumnName="id", onDelete="SET NULL")
+     * @ORM\JoinColumn(name="fk_rating_for_user_id", referencedColumnName="id", onDelete="SET NULL")
 	 */
-	protected $for_user;
+	protected $ratingForUser = null;
 		
 	/**
      * @ORM\ManyToOne(targetEntity="CCDNUser\UserBundle\Entity\User")
-     * @ORM\JoinColumn(name="posted_by_user_id", referencedColumnName="id", onDelete="SET NULL")
+     * @ORM\JoinColumn(name="fk_rating_by_user_id", referencedColumnName="id", onDelete="SET NULL")
 	 */
-	protected $posted_by;
+	protected $ratingByUser = null;
 
 	/**
-	 * @ORM\Column(type="datetime", nullable=true)
+	 * @ORM\Column(type="datetime", name="posted_date", nullable=true)
 	 */
-	protected $posted_date;
+	protected $postedDate;
 	
 	/**
      * @ORM\Column(type="text")
@@ -59,10 +59,11 @@ class Karma
 	protected $comment;
 
 	/**
-	 * @ORM\Column(type="boolean")
+	 * @ORM\Column(type="boolean", name="is_positive")
 	 */
-	protected $is_positive;
+	protected $isPositive = false;
 	
+
 
     /**
      * Get id
@@ -75,23 +76,23 @@ class Karma
     }
 
     /**
-     * Set posted_date
+     * Set postedDate
      *
      * @param datetime $postedDate
      */
     public function setPostedDate($postedDate)
     {
-        $this->posted_date = $postedDate;
+        $this->postedDate = $postedDate;
     }
 
     /**
-     * Get posted_date
+     * Get postedDate
      *
      * @return datetime 
      */
     public function getPostedDate()
     {
-        return $this->posted_date;
+        return $this->postedDate;
     }
 
     /**
@@ -115,63 +116,23 @@ class Karma
     }
 
     /**
-     * Set is_positive
+     * Set isPositive
      *
      * @param boolean $isPositive
      */
     public function setIsPositive($isPositive)
     {
-        $this->is_positive = $isPositive;
+        $this->isPositive = $isPositive;
     }
 
     /**
-     * Get is_positive
+     * Get isPositive
      *
      * @return boolean 
      */
     public function getIsPositive()
     {
-        return $this->is_positive;
-    }
-
-    /**
-     * Set for_user
-     *
-     * @param CCDNUser\UserBundle\Entity\User $forUser
-     */
-    public function setForUser(\CCDNUser\UserBundle\Entity\User $forUser)
-    {
-        $this->for_user = $forUser;
-    }
-
-    /**
-     * Get for_user
-     *
-     * @return CCDNUser\UserBundle\Entity\User 
-     */
-    public function getForUser()
-    {
-        return $this->for_user;
-    }
-
-    /**
-     * Set posted_by
-     *
-     * @param CCDNUser\UserBundle\Entity\User $postedBy
-     */
-    public function setPostedBy(\CCDNUser\UserBundle\Entity\User $postedBy)
-    {
-        $this->posted_by = $postedBy;
-    }
-
-    /**
-     * Get posted_by
-     *
-     * @return CCDNUser\UserBundle\Entity\User 
-     */
-    public function getPostedBy()
-    {
-        return $this->posted_by;
+        return $this->isPositive;
     }
 
     /**
@@ -179,7 +140,7 @@ class Karma
      *
      * @param CCDNForum\ForumBundle\Entity\Post $post
      */
-    public function setPost(\CCDNForum\ForumBundle\Entity\Post $post)
+    public function setPost(\CCDNForum\ForumBundle\Entity\Post $post = null)
     {
         $this->post = $post;
     }
@@ -192,5 +153,65 @@ class Karma
     public function getPost()
     {
         return $this->post;
+    }
+
+    /**
+     * Set ratingForUser
+     *
+     * @param CCDNUser\UserBundle\Entity\User $ratingForUser
+     */
+    public function setRatingForUser(\CCDNUser\UserBundle\Entity\User $ratingForUser = null)
+    {
+        $this->ratingForUser = $ratingForUser;
+    }
+
+    /**
+     * Get ratingForUser
+     *
+     * @return CCDNUser\UserBundle\Entity\User 
+     */
+    public function getRatingForUser()
+    {
+        return $this->ratingForUser;
+    }
+
+    /**
+     * Set postedBy
+     *
+     * @param CCDNUser\UserBundle\Entity\User $postedBy
+     */
+    public function setPostedBy(\CCDNUser\UserBundle\Entity\User $postedBy = null)
+    {
+        $this->postedBy = $postedBy;
+    }
+
+    /**
+     * Get postedBy
+     *
+     * @return CCDNUser\UserBundle\Entity\User 
+     */
+    public function getPostedBy()
+    {
+        return $this->postedBy;
+    }
+
+    /**
+     * Set ratingByUser
+     *
+     * @param CCDNUser\UserBundle\Entity\User $ratingByUser
+     */
+    public function setRatingByUser(\CCDNUser\UserBundle\Entity\User $ratingByUser = null)
+    {
+        $this->ratingByUser = $ratingByUser;
+    }
+
+    /**
+     * Get ratingByUser
+     *
+     * @return CCDNUser\UserBundle\Entity\User 
+     */
+    public function getRatingByUser()
+    {
+        return $this->ratingByUser;
     }
 }
