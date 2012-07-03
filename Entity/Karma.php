@@ -34,19 +34,19 @@ class Karma
      * @ORM\ManyToOne(targetEntity="CCDNForum\ForumBundle\Entity\Post", cascade={"persist"})
      * @ORM\JoinColumn(name="fk_post_id", referencedColumnName="id", onDelete="SET NULL")
 	 */
-	protected $post = null;
+	protected $post;
 
 	/**
      * @ORM\ManyToOne(targetEntity="CCDNUser\UserBundle\Entity\User")
      * @ORM\JoinColumn(name="fk_rating_for_user_id", referencedColumnName="id", onDelete="SET NULL")
 	 */
-	protected $ratingForUser = null;
+	protected $ratingForUser;
 		
 	/**
      * @ORM\ManyToOne(targetEntity="CCDNUser\UserBundle\Entity\User")
      * @ORM\JoinColumn(name="fk_rating_by_user_id", referencedColumnName="id", onDelete="SET NULL")
 	 */
-	protected $ratingByUser = null;
+	protected $ratingByUser;
 
 	/**
 	 * @ORM\Column(type="datetime", name="posted_date", nullable=true)
@@ -54,12 +54,12 @@ class Karma
 	protected $postedDate;
 	
 	/**
-     * @ORM\Column(type="text")
+     * @ORM\Column(type="text", nullable=false)
      */
 	protected $comment;
 
 	/**
-	 * @ORM\Column(type="boolean", name="is_positive")
+	 * @ORM\Column(type="boolean", name="is_positive", nullable=false)
 	 */
 	protected $isPositive = false;
 	

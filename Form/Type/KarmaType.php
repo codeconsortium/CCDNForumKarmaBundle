@@ -82,10 +82,12 @@ class KarmaType extends AbstractType
 	 */
 	public function buildForm(FormBuilder $builder, array $options)
 	{
-		$builder->add('comment', 'textarea');
+		$builder->add('comment', 'textarea'/*, array('required' => true)*/);
 		$builder->add('is_positive', 'choice', array(
-			'choices' => array('1' => 'Positive', '0' => 'Negative'),
+			'choices' => array(1 => 'Positive', 0 => 'Negative'),
 			'required' => true,
+			'expanded' => true,
+			'multiple' => false,
 		));
 		
 	}
@@ -102,12 +104,13 @@ class KarmaType extends AbstractType
 	public function getDefaultOptions(array $options)
 	{
 		return array(
-			'data_class' => 'CCDNForum\KarmaBundle\Entity\Kara',
+			'data_class' => 'CCDNForum\KarmaBundle\Entity\Karma',
             'empty_data' => new \CCDNForum\KarmaBundle\Entity\Karma(),
 			'csrf_protection' => true,
             'csrf_field_name' => '_token',
             // a unique key to help generate the secret token
             'intention'       => 'karma_item',
+			'validration_groups' => 'karma',
 		);
 	}
 

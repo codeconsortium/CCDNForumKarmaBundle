@@ -53,7 +53,8 @@
 				</div>
 				
 				<div class="control-group{{ (form.is_positive.vars.errors|length > 0) ? ' error': '' }}">
-					{{ form_label(form.is_positive, null, { 'label': 'form.label.karma.is_positive'| trans({}, 'CCDNForumKarmaBundle') }) }}
+				{#	{{ form_label(form.is_positive, null, { 'label': 'form.label.karma.is_positive'| trans({}, 'CCDNForumKarmaBundle') }) }} #}
+					<label id="karma_is_positive" class="control-label" for="Karma[is_positive]">{{ 'form.label.karma.is_positive'| trans({}, 'CCDNForumKarmaBundle') }}<span style="color:#f00;" title="{{ 'form.field.required' |trans({}, 'CCDNUserUserBundle') }}">*</span></label>
 					<div class="controls row-fluid">
 						{{ form_errors(form.is_positive) }}
 						{{ form_widget(form.is_positive) }}

@@ -1,0 +1,8 @@
+CCDNForum\KarmaBundle\Entity\Karma:
+    properties:
+        comment:
+            - NotBlank: { groups: [karma] }
+            - MinLength: { limit: 5, groups: [karma] }
+        isPositive:
+            - NotNull: { groups: [karma] }
+            - Type: bool
