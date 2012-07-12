@@ -24,51 +24,50 @@
 
 	{% include 'CCDNComponentCrumbTrailBundle:Trail:trail.html.twig' with {'crumbs': crumbs } %}
 
-	<h2>{{ 'title.karma.rate' | trans({'%post_id%': post.getId }, 'CCDNForumKarmaBundle') }}</h2>
+	<h2>{{- 'title.karma.rate' | trans({'%post_id%': post.getId }, 'CCDNForumKarmaBundle') -}}</h2>
 
-	<div class="well">
-		{% form_theme form param('ccdn_forum_karma.rate.rate.form_theme') %}
-		
-		<form action="{{ path('cc_forum_karma_rate', { 'post_id': post.id } ) }}" method="post" {{ form_enctype(form) }} class="form-horizontal">
+	{%- spaceless -%}
+		{%- form_theme form param('ccdn_forum_karma.rate.rate.form_theme') -%}
+		<form action="{{- path('cc_forum_karma_rate', { 'post_id': post.id }) -}}" method="post" {{ form_enctype(form) }} class="form-horizontal">
 			<fieldset>
+		
+				{{- form_errors(form) -}}
 			
-				{{ form_errors(form) }}
-				
-				<div class="control-group"><div class="controls row-fluid">{{ form_row(form._token) }}</div></div>
-			
+				<div class="control-group"><div class="controls row-fluid">{{- form_row(form._token) -}}</div></div>
+		
 				<div class="control-group">
-					<label for="topic_title" class="control-label">{{ 'form.label.topic.title' | trans({}, 'CCDNForumForumBundle') }}</label>
+					<label for="topic_title" class="control-label">{{- 'form.label.topic.title' | trans({}, 'CCDNForumForumBundle') -}}</label>
 					<div class="controls row-fluid">
-						<input type="text" id="topic_title" value="{{ post.getTopic.getTitle }}" disabled class="input-xlarge span8">
+						<input type="text" id="topic_title" value="{{- post.getTopic.getTitle -}}" disabled class="input-xlarge span8">
 					</div>
 				</div>
-				
-				<div class="control-group{{ (form.comment.vars.errors|length > 0) ? ' error': '' }}">
-					{{ form_label(form.comment, null, { 'label': 'form.label.karma.comment'| trans({}, 'CCDNForumKarmaBundle') }) }}
+			
+				<div class="control-group{{- (form.comment.vars.errors|length > 0) ? ' error': '' -}}">
+					{{- form_label(form.comment, null, { 'label': 'form.label.karma.comment'| trans({}, 'CCDNForumKarmaBundle') }) -}}
 					<div class="controls row-fluid">
-						{{ form_errors(form.comment) }}
-					{#	{% form_theme form 'CCDNComponentBBCodeBundle:Form:fields.html.twig' %} #}
-						{{ form_widget(form.comment) }}
+						{{- form_errors(form.comment) -}}
+						{%- form_theme form 'CCDNComponentBBCodeBundle:Form:fields.html.twig' -%}
+						{{- form_widget(form.comment) -}}
 					</div>
 				</div>
-				
-				<div class="control-group{{ (form.is_positive.vars.errors|length > 0) ? ' error': '' }}">
-				{#	{{ form_label(form.is_positive, null, { 'label': 'form.label.karma.is_positive'| trans({}, 'CCDNForumKarmaBundle') }) }} #}
-					<label id="karma_is_positive" class="control-label" for="Karma[is_positive]">{{ 'form.label.karma.is_positive'| trans({}, 'CCDNForumKarmaBundle') }}<span style="color:#f00;" title="{{ 'form.field.required' |trans({}, 'CCDNUserUserBundle') }}">*</span></label>
+			
+				<div class="control-group{{- (form.is_positive.vars.errors|length > 0) ? ' error': '' -}}">
+					{{- form_label(form.is_positive, null, { 'label': 'form.label.karma.is_positive'| trans({}, 'CCDNForumKarmaBundle') }) -}}
+					<label id="karma_is_positive" class="control-label" for="Karma[is_positive]">{{- 'form.label.karma.is_positive'| trans({}, 'CCDNForumKarmaBundle') -}}<span style="color:#f00;" title="{{- 'form.field.required' |trans({}, 'CCDNUserUserBundle') -}}">*</span></label>
 					<div class="controls row-fluid">
-						{{ form_errors(form.is_positive) }}
-						{{ form_widget(form.is_positive) }}
+						{{- form_errors(form.is_positive) -}}
+						{{- form_widget(form.is_positive) -}}
 					</div>
 				</div>
-				
+			
 				<div class="form-actions">
-					<input type="submit" class="btn btn-primary" value="{{ 'form.button.karma.submit' | trans({}, 'CCDNForumKarmaBundle') }}">
+					<input type="submit" class="btn btn-primary" value="{{- 'form.button.karma.submit' | trans({}, 'CCDNForumKarmaBundle') -}}">
 				</div>
-				
+			
 			</fieldset>
 		</form>
-	</div>
-
+	{%- endspaceless -%}
+	
 	{% include 'CCDNComponentCrumbTrailBundle:Trail:trail.html.twig' with {'crumbs': crumbs } %}
 
 {% endblock %}
