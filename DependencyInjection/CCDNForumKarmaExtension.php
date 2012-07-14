@@ -45,6 +45,7 @@ class CCDNForumKarmaExtension extends Extension
 		$container->setParameter('ccdn_forum_karma.template.engine', $config['template']['engine']);
 		$container->setParameter('ccdn_forum_karma.user.profile_route', $config['user']['profile_route']);
 		
+		$this->getSEOSection($container, $config);
 		$this->getReviewSection($container, $config);
 		$this->getRateSection($container, $config);
     }
@@ -56,6 +57,18 @@ class CCDNForumKarmaExtension extends Extension
 	public function getAlias()
 	{
 		return 'ccdn_forum_karma';
+	}
+	
+	
+	
+	/**
+	 *
+	 * @access protected
+	 * @param $container, $config
+	 */
+	protected function getSEOSection($container, $config)
+	{
+	    $container->setParameter('ccdn_forum_karma.seo.title_length', $config['seo']['title_length']);
 	}
 	
 	

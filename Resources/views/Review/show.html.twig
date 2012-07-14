@@ -5,7 +5,7 @@
 	<link href="{{- asset('bundles/ccdncomponentbbcode/css/bbcode.css') -}}" rel="stylesheet" type="text/css">
 {% endblock %}
 
-{% block title %}{{- 'title.karma' | trans({}, 'CCDNForumKarmaBundle' ) -}}{% endblock %}
+{% block title %}{{- truncDot('title.karma' | trans({}, 'CCDNForumKarmaBundle'), param('ccdn_forum_karma.seo.title_length')) -}}{% endblock %}
 
 {% block sidebar %}
 	{{ parent() }}

@@ -10,7 +10,7 @@
 	<script src="{{- asset('bundles/ccdncomponentbbcode/js/jquery.bbeditor.js') -}}" type="text/javascript"></script>
 {% endblock %}
 
-{% block title %}{{- 'title.karma.rate' | trans({'%post_id%': post.getId }, 'CCDNForumKarmaBundle') -}}{% endblock %}
+{% block title %}{{- truncDot('title.karma.rate' | trans({'%post_id%': post.getId }, 'CCDNForumKarmaBundle'), param('ccdn_forum_karma.seo.title_length')) -}}{% endblock %}
 
 {% block sidebar %}
 	{{ parent() }}
