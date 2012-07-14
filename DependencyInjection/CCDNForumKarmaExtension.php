@@ -30,6 +30,17 @@ class CCDNForumKarmaExtension extends Extension
 {
 	
 	
+	
+    /**
+     * {@inheritDoc}
+     */
+	public function getAlias()
+	{
+		return 'ccdn_forum_karma';
+	}
+	
+	
+	
     /**
      * {@inheritDoc}
      */
@@ -49,15 +60,6 @@ class CCDNForumKarmaExtension extends Extension
 		$this->getReviewSection($container, $config);
 		$this->getRateSection($container, $config);
     }
-	
-	
-    /**
-     * {@inheritDoc}
-     */
-	public function getAlias()
-	{
-		return 'ccdn_forum_karma';
-	}
 	
 	
 	
