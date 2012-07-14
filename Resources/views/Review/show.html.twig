@@ -2,11 +2,11 @@
 
 {% block stylesheets %}
 	{{ parent() }}
-	<link href="{{ asset('bundles/ccdncomponentcrumbtrail/css/crumbs.css') }}" rel="stylesheet" type="text/css">
-	<link href="{{ asset('bundles/ccdncomponentbbcode/css/bbcode.css') }}" rel="stylesheet" type="text/css">
+	<link href="{{- asset('bundles/ccdncomponentcrumbtrail/css/crumbs.css') -}}" rel="stylesheet" type="text/css">
+	<link href="{{- asset('bundles/ccdncomponentbbcode/css/bbcode.css') -}}" rel="stylesheet" type="text/css">
 {% endblock %}
 
-{% block title %}{{ 'title.karma' | trans({}, 'CCDNForumKarmaBundle' ) }}{% endblock %}
+{% block title %}{{- 'title.karma' | trans({}, 'CCDNForumKarmaBundle' ) -}}{% endblock %}
 
 {% block sidebar %}
 	{{ parent() }}
@@ -15,22 +15,24 @@
 
 {% block body %}
 
-	{% include 'CCDNComponentCommonBundle:Flashes:flashes.html.twig' %}
+	{%- spaceless -%}
 
-	{% include 'CCDNComponentCrumbTrailBundle:Trail:trail.html.twig' with {'crumbs': crumbs } %}
+	{%- include 'CCDNComponentCommonBundle:Flashes:flashes.html.twig' -%}
 
-	<h2>{{ 'title.karma' | trans({}, 'CCDNForumKarmaBundle' ) }}</h2>
+	{%- include 'CCDNComponentCrumbTrailBundle:Trail:trail.html.twig' with {'crumbs': crumbs } -%}
+
+	<h2>{{- 'title.karma' | trans({}, 'CCDNForumKarmaBundle' ) -}}</h2>
 	
 	<table class="table table-striped table-bordered">
 		<tr class="row_odd">
-			<td class="center" style="width: 50%;"><span class="table_header" style="color: #4fd111 !important;">+{{ registries[user.getId()].getCachedKarmaPositiveCount }}</span></td>
-			<td class="center" style="width: 50%;"><span class="table_header" style="color: #FF0000 !important;">-{{ registries[user.getId()].getCachedKarmaNegativeCount }}</span></td>
+			<td class="center" style="width: 50%;"><span class="table_header" style="color: #4fd111 !important;">+{{- registries[user.getId()].getCachedKarmaPositiveCount -}}</span></td>
+			<td class="center" style="width: 50%;"><span class="table_header" style="color: #FF0000 !important;">-{{- registries[user.getId()].getCachedKarmaNegativeCount -}}</span></td>
 		</tr>
 	</table>
 
-	{% if pager.haveToPaginate %}
-	    {{ pagerfanta(pager, 'twitter_bootstrap', {'routeName':'cc_forum_karma_show_all_paginated', 'routeParams':{}} ) }}
-	{% endif %}
+	{%- if pager.haveToPaginate -%}
+	    {{- pagerfanta(pager, 'twitter_bootstrap', {'routeName':'cc_forum_karma_show_all_paginated', 'routeParams':{}} ) -}}
+	{%- endif -%}
 
 	<table class="table table-striped table-bordered">
 		<thead>
@@ -38,63 +40,65 @@
 				<th class="center" style="width:18px;"></th>
 				<th class="center" style="width:60px;"></th>
 				<th class="center" style="width:50px;">#</th>
-				<th class="left">{{ 'board.table.head.topic_title' |trans({}, 'CCDNForumForumBundle') }}</th>
-				<th class="center" style="width: 200px;">{{ 'actioned.at' |trans({}, 'CCDNForumForumBundle') }}</th>
+				<th class="left">{{- 'board.table.head.topic_title' |trans({}, 'CCDNForumForumBundle') -}}</th>
+				<th class="center" style="width: 200px;">{{- 'actioned.at' |trans({}, 'CCDNForumForumBundle') -}}</th>
 			</tr>
 		</thead>
 		<tbody>
 		{% for row, review in pager.getCurrentPageResults %}
-			<tr class="{{ cycle(['row_odd', 'row_even'], row) }}">
+			<tr class="{{- cycle(['row_odd', 'row_even'], row) -}}">
 				<td class="center">
 					<i class="icon-comment"></i>
 				</td>
 				<td class="center">
-					<img class="icon16" width="16" height="16" src="{{ asset('bundles/ccdncomponentcommon/images/icons/Black/16x16/16x16_karma.png') }}" alt="icon">&nbsp;
-					{% if review.isPositive %}
+					<img class="icon16" width="16" height="16" src="{{- asset('bundles/ccdncomponentcommon/images/icons/Black/16x16/16x16_karma.png') -}}" alt="icon">&nbsp;
+					{%- if review.isPositive -%}
 						<span class="badge badge-success">+1</span>
-					{% else %}
+					{%- else -%}
 						<span class="badge badge-important">-1</span>
-					{% endif %}
+					{%- endif -%}
 				</td>
 				<td class="center">
-					{% if review.getPost() %}
-						{{ review.getPost().getId() }}
-					{% endif %}
+					{%- if review.getPost() -%}
+						{{- review.getPost().getId() -}}
+					{%- endif -%}
 				</td>
 				<td class="left">
-					{% if review.getPost() %}
-						{% if review.getPost().getTopic() %}
-							{{ truncDot(review.getPost().getTopic().getTitle(), param('ccdn_forum_karma.review.review_all.topic_title_truncate')) }}
-						{% endif %}
-					{% endif %}
+					{%- if review.getPost() -%}
+						{%- if review.getPost().getTopic() -%}
+							{{- truncDot(review.getPost().getTopic().getTitle(), param('ccdn_forum_karma.review.review_all.topic_title_truncate')) -}}
+						{%- endif -%}
+					{%- endif -%}
 				</td>
 				<td class="center">
-					<abbr class="timestamper" title="{{ review.getPostedDate |date('Y-m-d H:i:s T Z', 'Europe/London') }}">{{ review.getPostedDate |date(param('ccdn_forum_karma.review.review_all.rating_datetime_format')) }}</abbr>
+					<abbr class="timestamper" title="{{- review.getPostedDate |date('Y-m-d H:i:s T Z', 'Europe/London') -}}">{{- review.getPostedDate |date(param('ccdn_forum_karma.review.review_all.rating_datetime_format')) -}}</abbr>
 				</td>
 			</tr>
-			<tr class="{{ cycle(['row_odd', 'row_even'], row) }}">
+			<tr class="{{- cycle(['row_odd', 'row_even'], row) -}}">
 				<td class="left" colspan="5">
 					<div class="well">
 						<span class="common_body">
-						{{ BBCode(review.comment | raw) | raw }}
+						{{- BBCode(review.comment | raw) | raw -}}
 						</span>
 					</div>
 				</td>
 			</tr>
-		{% else %}
+		{%- else -%}
 			<tr>
 				<td class="center" colspan="5">
-					{{ 'karma.table.empty' | trans({}, 'CCDNForumKarmaBundle') }}
+					{{- 'karma.table.empty' | trans({}, 'CCDNForumKarmaBundle') -}}
 				</td>
 			</tr>
-		{% endfor %}
+		{%- endfor -%}
 		</tbody>
 	</table>
 	
-	{% if pager.haveToPaginate %}
-	    {{ pagerfanta(pager, 'twitter_bootstrap', {'routeName':'cc_forum_karma_show_all_paginated', 'routeParams':{}} ) }}
-	{% endif %}
+	{%- if pager.haveToPaginate -%}
+	    {{- pagerfanta(pager, 'twitter_bootstrap', {'routeName':'cc_forum_karma_show_all_paginated', 'routeParams':{}} ) -}}
+	{%- endif -%}
 	
-	{% include 'CCDNComponentCrumbTrailBundle:Trail:trail.html.twig' with {'crumbs': crumbs } %}
+	{%- include 'CCDNComponentCrumbTrailBundle:Trail:trail.html.twig' with {'crumbs': crumbs } -%}
+
+	{%- endspaceless -%}
 
 {% endblock %}
