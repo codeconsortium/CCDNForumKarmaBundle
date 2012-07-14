@@ -12,6 +12,7 @@ karma.table.empty: 'You have no ratings yet, post something useful to get feedba
 
 karma.comment: 'Comment'
 
+form.field.required: 'This field is required'
 form.label.karma.comment: 'Comment:'
 form.label.karma.is_positive: 'Karma:'
 form.button.karma.submit: 'Submit'
