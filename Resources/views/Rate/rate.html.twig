@@ -41,22 +41,22 @@
 					<input type="text" id="topic_title" value="{{- post.getTopic.getTitle -}}" disabled class="input-xlarge span8">
 				</div>
 			</div>
-		
+	
+			<div class="control-group{{- (form.is_positive.vars.errors|length > 0) ? ' error': '' -}}">
+				{#{{- form_label(form.is_positive, null, { 'label': 'form.label.karma.is_positive'| trans({}, 'CCDNForumKarmaBundle') }) -}}#}
+				<label id="karma_is_positive" class="control-label" for="Karma[is_positive]">{{- 'form.label.karma.is_positive'| trans({}, 'CCDNForumKarmaBundle') -}}<span style="color:#f00;" title="{{- 'form.field.required' |trans({}, 'CCDNForumKarmaBundle') -}}">*</span></label>
+				<div class="controls row-fluid">
+					{{- form_errors(form.is_positive) -}}
+					{{- form_widget(form.is_positive) -}}
+				</div>
+			</div>
+				
 			<div class="control-group{{- (form.comment.vars.errors|length > 0) ? ' error': '' -}}">
 				{{- form_label(form.comment, null, { 'label': 'form.label.karma.comment'| trans({}, 'CCDNForumKarmaBundle') }) -}}
 				<div class="controls row-fluid">
 					{{- form_errors(form.comment) -}}
 					{%- form_theme form 'CCDNComponentBBCodeBundle:Form:fields.html.twig' -%}
 					{{- form_widget(form.comment) -}}
-				</div>
-			</div>
-		
-			<div class="control-group{{- (form.is_positive.vars.errors|length > 0) ? ' error': '' -}}">
-				{{- form_label(form.is_positive, null, { 'label': 'form.label.karma.is_positive'| trans({}, 'CCDNForumKarmaBundle') }) -}}
-				<label id="karma_is_positive" class="control-label" for="Karma[is_positive]">{{- 'form.label.karma.is_positive'| trans({}, 'CCDNForumKarmaBundle') -}}<span style="color:#f00;" title="{{- 'form.field.required' |trans({}, 'CCDNForumKarmaBundle') -}}">*</span></label>
-				<div class="controls row-fluid">
-					{{- form_errors(form.is_positive) -}}
-					{{- form_widget(form.is_positive) -}}
 				</div>
 			</div>
 		
