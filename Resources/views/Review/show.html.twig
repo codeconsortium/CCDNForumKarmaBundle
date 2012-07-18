@@ -75,11 +75,13 @@
 			</tr>
 			<tr class="{{- cycle(['row_odd', 'row_even'], row) -}}">
 				<td class="left" colspan="5">
-					<div class="well">
-						<span class="common_body">
+					<span class="common_body">
+					{%- if param('ccdn_forum_karma.review.review_all.enable_bb_parser') -%}
 						{{- BBCode(review.comment | raw) | raw -}}
-						</span>
-					</div>
+					{%- else -%}
+						{{- review.comment -}}
+					{%- endif -%}
+					</span>
 				</td>
 			</tr>
 		{%- else -%}

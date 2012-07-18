@@ -86,6 +86,8 @@ class CCDNForumKarmaExtension extends Extension
 		$container->setParameter('ccdn_forum_karma.review.review_all.topic_title_truncate', $config['review']['review_all']['topic_title_truncate']);
 		$container->setParameter('ccdn_forum_karma.review.review_all.layout_template', $config['review']['review_all']['layout_template']);		
 		$container->setParameter('ccdn_forum_karma.review.review_all.rating_datetime_format', $config['review']['review_all']['rating_datetime_format']);
+		$container->setParameter('ccdn_forum_karma.review.review_all.enable_bb_parser', $config['review']['review_all']['enable_bb_parser']);
+		
 	}
 	
 	
@@ -99,6 +101,8 @@ class CCDNForumKarmaExtension extends Extension
 	{
 		$container->setParameter('ccdn_forum_karma.rate.rate.layout_template', $config['rate']['rate']['layout_template']);		
 		$container->setParameter('ccdn_forum_karma.rate.rate.form_theme', $config['rate']['rate']['form_theme']);
+		$container->setParameter('ccdn_forum_karma.rate.rate.enable_bb_editor', $config['rate']['rate']['enable_bb_editor']);
+		
 	}
 	
 }

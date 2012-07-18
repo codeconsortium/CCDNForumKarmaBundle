@@ -55,7 +55,9 @@
 				{{- form_label(form.comment, null, { 'label': 'form.label.karma.comment'| trans({}, 'CCDNForumKarmaBundle') }) -}}
 				<div class="controls row-fluid">
 					{{- form_errors(form.comment) -}}
-					{%- form_theme form 'CCDNComponentBBCodeBundle:Form:fields.html.twig' -%}
+					{%- if param('ccdn_forum_karma.rate.rate.enable_bb_editor') -%}
+						{%- form_theme form 'CCDNComponentBBCodeBundle:Form:fields.html.twig' -%}
+					{%- endif -%}
 					{{- form_widget(form.comment) -}}
 				</div>
 			</div>
