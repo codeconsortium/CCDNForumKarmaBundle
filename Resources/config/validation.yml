@@ -1,8 +1,10 @@
 CCDNForum\KarmaBundle\Entity\Karma:
     properties:
         comment:
+            - Type: { type: string, groups: [karma] }
             - NotBlank: { groups: [karma] }
             - MinLength: { limit: 5, groups: [karma] }
+            - MaxLength: { limit: 1000, groups: [karma] }
         isPositive:
+            - Type: { type: bool, groups: [karma] }
             - NotNull: { groups: [karma] }
-            - Type: bool
