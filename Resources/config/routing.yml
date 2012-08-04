@@ -4,7 +4,7 @@
 cc_forum_karma_show_all:
     pattern: /{_locale}/karma/show
     defaults: { _controller: CCDNForumKarmaBundle:Review:show, _locale: en, page: 1 }
-    
+
 cc_forum_karma_show_all_paginated:
     pattern: /{_locale}/karma/show/page/{page}
     defaults: { _controller: CCDNForumKarmaBundle:Review:show, _locale: en, page: 1 }

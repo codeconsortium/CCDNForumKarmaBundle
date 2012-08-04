@@ -3,8 +3,8 @@
 /*
  * This file is part of the CCDNForum KarmaBundle
  *
- * (c) CCDN (c) CodeConsortium <http://www.codeconsortium.com/> 
- * 
+ * (c) CCDN (c) CodeConsortium <http://www.codeconsortium.com/>
+ *
  * Available on github <http://www.github.com/codeconsortium/>
  *
  * For the full copyright and license information, please view the LICENSE
@@ -14,8 +14,6 @@
 namespace CCDNForum\KarmaBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
-use Doctrine\Common\Collections\ArrayCollection;
-use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass="CCDNForum\KarmaBundle\Repository\KarmaRepository")
@@ -23,52 +21,50 @@ use Symfony\Component\Validator\Constraints as Assert;
  */
 class Karma
 {
-	/**
+    /**
      * @ORM\Id
      * @ORM\Column(type="integer")
      * @ORM\GeneratedValue(strategy="AUTO")
      */
-	protected $id;
+    protected $id;
 
-	/**
+    /**
      * @ORM\ManyToOne(targetEntity="CCDNForum\ForumBundle\Entity\Post", cascade={"persist"})
      * @ORM\JoinColumn(name="fk_post_id", referencedColumnName="id", onDelete="SET NULL")
-	 */
-	protected $post;
+     */
+    protected $post;
 
-	/**
+    /**
      * @ORM\ManyToOne(targetEntity="CCDNUser\UserBundle\Entity\User")
      * @ORM\JoinColumn(name="fk_rating_for_user_id", referencedColumnName="id", onDelete="SET NULL")
-	 */
-	protected $ratingForUser;
-		
-	/**
+     */
+    protected $ratingForUser;
+
+    /**
      * @ORM\ManyToOne(targetEntity="CCDNUser\UserBundle\Entity\User")
      * @ORM\JoinColumn(name="fk_rating_by_user_id", referencedColumnName="id", onDelete="SET NULL")
-	 */
-	protected $ratingByUser;
+     */
+    protected $ratingByUser;
 
-	/**
-	 * @ORM\Column(type="datetime", name="posted_date", nullable=true)
-	 */
-	protected $postedDate;
-	
-	/**
+    /**
+     * @ORM\Column(type="datetime", name="posted_date", nullable=true)
+     */
+    protected $postedDate;
+
+    /**
      * @ORM\Column(type="text", nullable=false)
      */
-	protected $comment;
+    protected $comment;
 
-	/**
-	 * @ORM\Column(type="boolean", name="is_positive", nullable=false)
-	 */
-	protected $isPositive = false;
-	
-
+    /**
+     * @ORM\Column(type="boolean", name="is_positive", nullable=false)
+     */
+    protected $isPositive = false;
 
     /**
      * Get id
      *
-     * @return integer 
+     * @return integer
      */
     public function getId()
     {
@@ -88,7 +84,7 @@ class Karma
     /**
      * Get postedDate
      *
-     * @return datetime 
+     * @return datetime
      */
     public function getPostedDate()
     {
@@ -108,7 +104,7 @@ class Karma
     /**
      * Get comment
      *
-     * @return text 
+     * @return text
      */
     public function getComment()
     {
@@ -128,7 +124,7 @@ class Karma
     /**
      * Get isPositive
      *
-     * @return boolean 
+     * @return boolean
      */
     public function getIsPositive()
     {
@@ -148,7 +144,7 @@ class Karma
     /**
      * Get post
      *
-     * @return CCDNForum\ForumBundle\Entity\Post 
+     * @return CCDNForum\ForumBundle\Entity\Post
      */
     public function getPost()
     {
@@ -168,7 +164,7 @@ class Karma
     /**
      * Get ratingForUser
      *
-     * @return CCDNUser\UserBundle\Entity\User 
+     * @return CCDNUser\UserBundle\Entity\User
      */
     public function getRatingForUser()
     {
@@ -188,7 +184,7 @@ class Karma
     /**
      * Get postedBy
      *
-     * @return CCDNUser\UserBundle\Entity\User 
+     * @return CCDNUser\UserBundle\Entity\User
      */
     public function getPostedBy()
     {
@@ -208,7 +204,7 @@ class Karma
     /**
      * Get ratingByUser
      *
-     * @return CCDNUser\UserBundle\Entity\User 
+     * @return CCDNUser\UserBundle\Entity\User
      */
     public function getRatingByUser()
     {
