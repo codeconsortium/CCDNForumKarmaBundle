@@ -33,7 +33,7 @@
 	    {{- pagerfanta(pager, 'twitter_bootstrap', {'routeName':'cc_forum_karma_show_all_paginated', 'routeParams':{}} ) -}}
 	{%- endif -%}
 
-	<table class="table table-striped table-bordered">
+	<table class="table">
 		<thead>
 			<tr>
 				<th class="center" style="width:18px;"></th>
@@ -45,7 +45,7 @@
 		</thead>
 		<tbody>
 		{% for row, review in pager.getCurrentPageResults %}
-			<tr class="{{- cycle(['row_odd', 'row_even'], row) -}}">
+			<tr class="{{- cycle(['row_odd', 'row_even'], row) }} marked_read">
 				<td class="center">
 					<i class="icon-comment"></i>
 				</td>
