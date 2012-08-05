@@ -18,7 +18,7 @@ use Symfony\Component\Form\FormFactory;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
-use CCDNComponent\CommonBundle\Manager\ManagerInterface;
+use CCDNForum\KarmaBundle\Manager\ManagerInterface;
 
 /**
  *
@@ -154,7 +154,7 @@ class KarmaFormHandler
      */
     protected function onSuccess($entity)
     {
-        return $this->manager->insert($entity)->flushNow();
+        return $this->manager->insert($entity)->flush();
     }
 
 }

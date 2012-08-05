@@ -13,8 +13,8 @@
 
 namespace CCDNForum\KarmaBundle\Manager;
 
-use CCDNComponent\CommonBundle\Manager\ManagerInterface;
-use CCDNComponent\CommonBundle\Manager\BaseManager;
+use CCDNForum\KarmaBundle\Manager\ManagerInterface;
+use CCDNForum\KarmaBundle\Manager\BaseManager;
 
 /**
  *
@@ -33,7 +33,7 @@ class KarmaManager extends BaseManager implements ManagerInterface
     public function insert($karma)
     {
         // insert a new row
-        $this->persist($karma)->flushNow();
+        $this->persist($karma)->flush();
 
         $this->container->get('ccdn_forum_forum.registry.manager')->updateCacheKarmaCountForUser($karma->getRatingForUser());
 
