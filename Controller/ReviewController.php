@@ -29,7 +29,7 @@ class ReviewController extends ContainerAware
      *
      *
      * @access public
-     * @param  int                             $page
+     * @param  int $page
      * @return RedirectResponse|RenderResponse
      */
     public function showAction($page)

@@ -40,7 +40,8 @@ class KarmaRepository extends EntityRepository
 
     /**
      *
-     *
+     * @access public
+ 	 * @param $userId
      */
     public function getKarmaCountForUserById($user_id)
     {

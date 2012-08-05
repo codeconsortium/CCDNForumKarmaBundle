@@ -21,6 +21,7 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class Karma
 {
+	
     /**
      * @ORM\Id
      * @ORM\Column(type="integer")
