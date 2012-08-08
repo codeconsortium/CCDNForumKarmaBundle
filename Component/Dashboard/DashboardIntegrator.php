@@ -43,7 +43,7 @@ class DashboardIntegrator extends BaseIntegrator implements IntegratorInterface
         $resources = array(
             'user' => array(
                 'Account' => array(
-                    'cc_forum_karma_show_all' => array('auth' => 'ROLE_USER', 'name' => 'Karma', 'icon' => $this->basePath . '/bundles/ccdncomponentcommon/images/icons/Black/32x32/32x32_karma.png'),
+                    'ccdn_forum_karma_show_all' => array('auth' => 'ROLE_USER', 'name' => 'Karma', 'icon' => $this->basePath . '/bundles/ccdncomponentcommon/images/icons/Black/32x32/32x32_karma.png'),
                 ),
             ),
 

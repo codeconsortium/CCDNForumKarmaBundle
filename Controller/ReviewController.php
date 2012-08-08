@@ -53,7 +53,7 @@ class ReviewController extends ContainerAware
 
         // setup crumb trail.
         $crumb_trail = $this->container->get('ccdn_component_crumb.trail')
-            ->add($this->container->get('translator')->trans('crumbs.karma', array(), 'CCDNForumKarmaBundle'), $this->container->get('router')->generate('cc_forum_karma_show_all'), "home");
+            ->add($this->container->get('translator')->trans('crumbs.karma', array(), 'CCDNForumKarmaBundle'), $this->container->get('router')->generate('ccdn_forum_karma_show_all'), "home");
 
         return $this->container->get('templating')->renderResponse('CCDNForumKarmaBundle:Review:show.html.' . $this->getEngine(), array(
             'user_profile_route' => $this->container->getParameter('ccdn_forum_karma.user.profile_route'),
