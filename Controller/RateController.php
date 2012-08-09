@@ -29,10 +29,10 @@ class RateController extends ContainerAware
     /**
      *
      * @access public
-     * @param $board_id
+     * @param Int $postId
      * @return RedirectResponse|RenderResponse
      */
-    public function rateAction($post_id)
+    public function rateAction($postId)
     {
         //
         //	Invalidate this action / redirect if user should not have access to it
@@ -43,7 +43,7 @@ class RateController extends ContainerAware
 
         $user = $this->container->get('security.context')->getToken()->getUser();
 
-        $post = $this->container->get('ccdn_forum_forum.post.repository')->findPostForEditing($post_id);
+        $post = $this->container->get('ccdn_forum_forum.post.repository')->findPostForEditing($postId);
 
         if (( ! $post)
         || ( ! is_object($post->getTopic()) && $post->getTopic() instanceof Topic)
@@ -69,7 +69,7 @@ class RateController extends ContainerAware
         if ($formHandler->process()) {
             $this->container->get('session')->setFlash('success', $this->container->get('translator')->trans('flash.karma.rate.success', array('%topic_title%' => $post->getTopic()->getTitle(), '%post_id%' => $post->getId()), 'CCDNForumKarmaBundle'));
 
-            return new RedirectResponse($this->container->get('router')->generate('ccdn_forum_forum_topic_show', array('topic_id' => $post->getTopic()->getId() )));
+            return new RedirectResponse($this->container->get('router')->generate('ccdn_forum_forum_topic_show', array('topicId' => $post->getTopic()->getId() )));
         }
 
         // setup crumb trail.
@@ -77,17 +77,17 @@ class RateController extends ContainerAware
         $board = $topic->getBoard();
         $category = $board->getCategory();
 
-        $crumb_trail = $this->container->get('ccdn_component_crumb.trail')
+        $crumbs = $this->container->get('ccdn_component_crumb.trail')
             ->add($this->container->get('translator')->trans('crumbs.forum_index', array(), 'CCDNForumForumBundle'), $this->container->get('router')->generate('ccdn_forum_forum_category_index'), "home")
-            ->add($category->getName(), $this->container->get('router')->generate('ccdn_forum_forum_category_show', array('category_id' => $category->getId())), "category")
-            ->add($board->getName(), $this->container->get('router')->generate('ccdn_forum_forum_board_show', array('board_id' => $board->getId())), "board")
-            ->add($topic->getTitle(), $this->container->get('router')->generate('ccdn_forum_forum_topic_show', array('topic_id' => $topic->getId())), "topic")
-            ->add($this->container->get('translator')->trans('crumbs.karma.rate', array('%post_id%' => $post->getId()), 'CCDNForumKarmaBundle'), $this->container->get('router')->generate('ccdn_forum_karma_rate', array('post_id' => $post->getId())), "karma");
+            ->add($category->getName(), $this->container->get('router')->generate('ccdn_forum_forum_category_show', array('categoryId' => $category->getId())), "category")
+            ->add($board->getName(), $this->container->get('router')->generate('ccdn_forum_forum_board_show', array('boardId' => $board->getId())), "board")
+            ->add($topic->getTitle(), $this->container->get('router')->generate('ccdn_forum_forum_topic_show', array('topicId' => $topic->getId())), "topic")
+            ->add($this->container->get('translator')->trans('crumbs.karma.rate', array('%post_id%' => $post->getId()), 'CCDNForumKarmaBundle'), $this->container->get('router')->generate('ccdn_forum_karma_rate', array('postId' => $post->getId())), "karma");
 
         return $this->container->get('templating')->renderResponse('CCDNForumKarmaBundle:Rate:rate.html.' . $this->getEngine(), array(
             'user_profile_route' => $this->container->getParameter('ccdn_forum_forum.user.profile_route'),
             'user' => $user,
-            'crumbs' => $crumb_trail,
+            'crumbs' => $crumbs,
             'form' => $formHandler->getForm()->createView(),
             'post' => $post,
         ));
@@ -96,7 +96,7 @@ class RateController extends ContainerAware
     /**
      *
      * @access protected
-     * @return string
+     * @return String
      */
     protected function getEngine()
     {

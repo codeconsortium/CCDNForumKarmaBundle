@@ -29,7 +29,7 @@ class ReviewController extends ContainerAware
      *
      *
      * @access public
-     * @param  int $page
+     * @param  Int $page
      * @return RedirectResponse|RenderResponse
      */
     public function showAction($page)
@@ -40,11 +40,11 @@ class ReviewController extends ContainerAware
 
         $user = $this->container->get('security.context')->getToken()->getUser();
 
-        $karma_paginated = $this->container->get('ccdn_forum_karma.karma.repository')->findKarmaForUserById($user->getId());
+        $karmaPager = $this->container->get('ccdn_forum_karma.karma.repository')->findKarmaForUserById($user->getId());
 
-        $karma_per_page = $this->container->getParameter('ccdn_forum_karma.review.review_all.reviews_per_page');
-        $karma_paginated->setMaxPerPage($karma_per_page);
-        $karma_paginated->setCurrentPage($page, false, true);
+        $karmaPerPage = $this->container->getParameter('ccdn_forum_karma.review.review_all.reviews_per_page');
+        $karmaPager->setMaxPerPage($karmaPerPage);
+        $karmaPager->setCurrentPage($page, false, true);
 
         //
         // Get registry for user
@@ -52,14 +52,14 @@ class ReviewController extends ContainerAware
         $registries = $this->container->get('ccdn_forum_forum.registry.manager')->getRegistriesForUsersAsArray(array($user->getId()));
 
         // setup crumb trail.
-        $crumb_trail = $this->container->get('ccdn_component_crumb.trail')
+        $crumbs = $this->container->get('ccdn_component_crumb.trail')
             ->add($this->container->get('translator')->trans('crumbs.karma', array(), 'CCDNForumKarmaBundle'), $this->container->get('router')->generate('ccdn_forum_karma_show_all'), "home");
 
         return $this->container->get('templating')->renderResponse('CCDNForumKarmaBundle:Review:show.html.' . $this->getEngine(), array(
             'user_profile_route' => $this->container->getParameter('ccdn_forum_karma.user.profile_route'),
             'user' => $user,
-            'crumbs' => $crumb_trail,
-            'pager' => $karma_paginated,
+            'crumbs' => $crumbs,
+            'pager' => $karmaPager,
             'registries' => $registries,
         ));
     }
@@ -67,7 +67,7 @@ class ReviewController extends ContainerAware
     /**
      *
      * @access protected
-     * @return string
+     * @return String
      */
     protected function getEngine()
     {

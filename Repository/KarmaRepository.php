@@ -18,7 +18,7 @@ class KarmaRepository extends EntityRepository
     /**
      *
      * @access public
-     * @param int $topicId
+     * @param Int $userId
      */
     public function findKarmaForUserById($userId)
     {
@@ -41,9 +41,9 @@ class KarmaRepository extends EntityRepository
     /**
      *
      * @access public
- 	 * @param $userId
+ 	 * @param Int $userId
      */
-    public function getKarmaCountForUserById($user_id)
+    public function getKarmaCountForUserById($userId)
     {
 
         $kpQuery = $this->getEntityManager()
@@ -51,14 +51,14 @@ class KarmaRepository extends EntityRepository
                 SELECT COUNT(kp.id) AS karmaPositiveCount
                 FROM CCDNForumKarmaBundle:Karma kp
                 WHERE kp.ratingForUser = :id AND kp.isPositive = TRUE')
-            ->setParameter('id', $user_id);
+            ->setParameter('id', $userId);
 
         $knQuery = $this->getEntityManager()
             ->createQuery('
                 SELECT COUNT(kn.id) AS karmaNegativeCount
                 FROM CCDNForumKarmaBundle:Karma kn
                 WHERE kn.ratingForUser = :id AND kn.isPositive = FALSE')
-            ->setParameter('id', $user_id);
+            ->setParameter('id', $userId);
 
         try {
             $kp = $kpQuery->getsingleResult();

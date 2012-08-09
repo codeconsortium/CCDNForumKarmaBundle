@@ -13,5 +13,5 @@ ccdn_forum_karma_show_all_paginated:
 # Karma Rate.
 #
 ccdn_forum_karma_rate:
-    pattern: /{_locale}/karma/post/{post_id}/rate
+    pattern: /{_locale}/karma/post/{postId}/rate
     defaults: { _controller: CCDNForumKarmaBundle:Rate:rate, _locale: en }
