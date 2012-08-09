@@ -6,5 +6,7 @@ CCDNForum\KarmaBundle\Entity\Karma:
             - MinLength: { limit: 5, groups: [karma] }
             - MaxLength: { limit: 1000, groups: [karma] }
         isPositive:
-            - Type: { type: bool, groups: [karma] }
+        #    - Type: { type: number, groups: [karma] }
+            - Choice: { choices: [0, 1], groups: [karma] }
+            - MaxLength: { limit: 1, groups: [karma] }
             - NotNull: { groups: [karma] }
