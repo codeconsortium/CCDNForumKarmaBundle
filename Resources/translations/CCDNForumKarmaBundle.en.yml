@@ -1,18 +1,44 @@
-title.karma: 'Karma.'
-title.karma.rate: 'Rate post #%post_id%.'
+#
+# Page Titles.
+#
+ccdn_forum_karma.title.karma.review: 'Karma.'
+ccdn_forum_karma.title.karma.rate: 'Rate post #%post_id%.'
 
-crumbs.karma: Karma
-crumbs.karma.rate: 'Rate post #%post_id%'
+#
+# Crumbs.
+#
+ccdn_forum_karma.crumbs.karma.review: 'Karma'
+ccdn_forum_karma.crumbs.karma.rate: 'Rate post #%post_id%'
 
-link.post.rate: 'Rate this post'
+#
+# Flash Messages.
+#
+ccdn_forum_karma.flash.karma.rate.success: 'You rated post #%post_id% for topic: %topic_title%.'
 
-flash.karma.rate.success: 'You rated post #%post_id% for topic: %topic_title%.'
+#
+# Sidebar.
+#
 
-karma.table.empty: 'You have no ratings yet, post something useful to get feedback.'
+#
+# Link Labels.
+#
+ccdn_forum_karma.link.post.rate: 'Rate this post'
 
-karma.comment: 'Comment'
+#
+# Forms.
+#
+ccdn_forum_karma.form.field.required: 'This field is required'
+ccdn_forum_karma.form.label.karma.comment: 'Comment:'
+ccdn_forum_karma.form.label.karma.is_positive: 'Karma:'
+ccdn_forum_karma.form.button.karma.submit: 'Submit'
 
-form.field.required: 'This field is required'
-form.label.karma.comment: 'Comment:'
-form.label.karma.is_positive: 'Karma:'
-form.button.karma.submit: 'Submit'
+#
+# Table Labels.
+#
+ccdn_forum_karma.review.table.head.topic_title: 'Topic'
+ccdn_forum_karma.review.table.empty: 'You have no ratings yet, post something useful to get feedback.'
+
+#
+# Generic.
+#
+ccdn_forum_karma.actioned_at: ' at '

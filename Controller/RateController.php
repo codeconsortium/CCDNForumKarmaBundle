@@ -67,7 +67,7 @@ class RateController extends ContainerAware
         $formHandler = $this->container->get('ccdn_forum_karma.post.rate.form.handler')->setDefaultValues($options);
 
         if ($formHandler->process()) {
-            $this->container->get('session')->setFlash('success', $this->container->get('translator')->trans('flash.karma.rate.success', array('%topic_title%' => $post->getTopic()->getTitle(), '%post_id%' => $post->getId()), 'CCDNForumKarmaBundle'));
+            $this->container->get('session')->setFlash('success', $this->container->get('translator')->trans('ccdn_forum_karma.flash.karma.rate.success', array('%topic_title%' => $post->getTopic()->getTitle(), '%post_id%' => $post->getId()), 'CCDNForumKarmaBundle'));
 
             return new RedirectResponse($this->container->get('router')->generate('ccdn_forum_forum_topic_show', array('topicId' => $post->getTopic()->getId() )));
         }
@@ -82,7 +82,7 @@ class RateController extends ContainerAware
             ->add($category->getName(), $this->container->get('router')->generate('ccdn_forum_forum_category_show', array('categoryId' => $category->getId())), "category")
             ->add($board->getName(), $this->container->get('router')->generate('ccdn_forum_forum_board_show', array('boardId' => $board->getId())), "board")
             ->add($topic->getTitle(), $this->container->get('router')->generate('ccdn_forum_forum_topic_show', array('topicId' => $topic->getId())), "topic")
-            ->add($this->container->get('translator')->trans('crumbs.karma.rate', array('%post_id%' => $post->getId()), 'CCDNForumKarmaBundle'), $this->container->get('router')->generate('ccdn_forum_karma_rate', array('postId' => $post->getId())), "karma");
+            ->add($this->container->get('translator')->trans('ccdn_forum_karma.crumbs.karma.rate', array('%post_id%' => $post->getId()), 'CCDNForumKarmaBundle'), $this->container->get('router')->generate('ccdn_forum_karma_rate', array('postId' => $post->getId())), "karma");
 
         return $this->container->get('templating')->renderResponse('CCDNForumKarmaBundle:Rate:rate.html.' . $this->getEngine(), array(
             'user_profile_route' => $this->container->getParameter('ccdn_forum_forum.user.profile_route'),

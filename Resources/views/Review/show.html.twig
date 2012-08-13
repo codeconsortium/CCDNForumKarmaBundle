@@ -5,7 +5,7 @@
 	<link href="{{- asset('bundles/ccdncomponentbbcode/css/bbcode.css') -}}" rel="stylesheet" type="text/css">
 {% endblock %}
 
-{% block title %}{{- truncDot('title.karma' | trans({}, 'CCDNForumKarmaBundle'), param('ccdn_forum_karma.seo.title_length')) -}}{% endblock %}
+{% block title %}{{- truncDot('ccdn_forum_karma.title.karma.review' | trans({}, 'CCDNForumKarmaBundle'), param('ccdn_forum_karma.seo.title_length')) -}}{% endblock %}
 
 {% block sidebar %}
 	{{ parent() }}
@@ -20,7 +20,7 @@
 
 	{%- include 'CCDNComponentCrumbTrailBundle:Trail:trail.html.twig' with {'crumbs': crumbs } -%}
 
-	<h2>{{- 'title.karma' | trans({}, 'CCDNForumKarmaBundle' ) -}}</h2>
+	<h2>{{- 'ccdn_forum_karma.title.karma.review' | trans({}, 'CCDNForumKarmaBundle' ) -}}</h2>
 
 	<table class="table table-striped table-bordered">
 		<tr class="row_odd">
@@ -46,8 +46,8 @@
 				<th class="center" style="width:18px;"></th>
 				<th class="center" style="width:60px;"></th>
 				<th class="center" style="width:50px;">#</th>
-				<th class="left">{{- 'board.table.head.topic_title' |trans({}, 'CCDNForumForumBundle') -}}</th>
-				<th class="center" style="width: 200px;">{{- 'actioned.at' |trans({}, 'CCDNForumForumBundle') -}}</th>
+				<th class="left">{{- 'ccdn_forum_karma.review.table.head.topic_title' |trans({}, 'CCDNForumKarmaBundle') -}}</th>
+				<th class="center" style="width: 200px;">{{- 'ccdn_forum_karma.actioned_at' |trans({}, 'CCDNForumKarmaBundle') -}}</th>
 			</tr>
 		</thead>
 		<tbody>
@@ -91,7 +91,7 @@
 		{%- else -%}
 			<tr>
 				<td class="center" colspan="5">
-					{{- 'karma.table.empty' | trans({}, 'CCDNForumKarmaBundle') -}}
+					{{- 'ccdn_forum_karma.review.table.empty' | trans({}, 'CCDNForumKarmaBundle') -}}
 				</td>
 			</tr>
 		{%- endfor -%}
