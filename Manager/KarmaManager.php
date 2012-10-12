@@ -35,7 +35,7 @@ class KarmaManager extends BaseManager implements ManagerInterface
         // insert a new row
         $this->persist($karma)->flush();
 
-        $this->container->get('ccdn_forum_forum.registry.manager')->updateCacheKarmaCountForUser($karma->getRatingForUser());
+        $this->container->get('ccdn_forum_forum.manager.registry')->updateCacheKarmaCountForUser($karma->getRatingForUser());
 
         return $this;
     }

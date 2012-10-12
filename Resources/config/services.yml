@@ -1,12 +1,13 @@
 parameters:
-    ccdn_forum_karma.karma.repository.class:        CCDNForum\KarmaBundle\Repository\Karma
+    
+    ccdn_forum_karma.repository.karma.class:        CCDNForum\KarmaBundle\Repository\Karma
 
-    ccdn_forum_karma.karma.manager.class:           CCDNForum\KarmaBundle\Manager\KarmaManager
+    ccdn_forum_karma.manager.karma.class:           CCDNForum\KarmaBundle\Manager\KarmaManager
 
-    ccdn_forum_karma.post.rate.form.handler.class:  CCDNForum\KarmaBundle\Form\Handler\KarmaFormHandler
-    ccdn_forum_karma.post.rate.form.type.class:     CCDNForum\KarmaBundle\Form\Type\KarmaType
+    ccdn_forum_karma.form.type.rate_post.class:     CCDNForum\KarmaBundle\Form\Type\KarmaType
+    ccdn_forum_karma.form.handler.rate_post.class:  CCDNForum\KarmaBundle\Form\Handler\KarmaFormHandler
 
-    ccdn_forum_karma.dashboard.integrator.class:    CCDNForum\KarmaBundle\Component\Dashboard\DashboardIntegrator
+    ccdn_forum_karma.component.dashboard.integrator.class:    CCDNForum\KarmaBundle\Component\Dashboard\DashboardIntegrator
 
 services:
 
@@ -14,8 +15,8 @@ services:
     #
     # Repositories.
     #
-    ccdn_forum_karma.karma.repository:
-        class: %ccdn_forum_karma.karma.repository.class%
+    ccdn_forum_karma.repository.karma:
+        class: %ccdn_forum_karma.repository.karma.class%
         factory_service: doctrine.orm.default_entity_manager
         factory_method: getRepository
         arguments:
@@ -24,25 +25,25 @@ services:
     #
     # Managers.
     #
-    ccdn_forum_karma.karma.manager:
-        class:  %ccdn_forum_karma.karma.manager.class%
+    ccdn_forum_karma.manager.karma:
+        class:  %ccdn_forum_karma.manager.karma.class%
         arguments:  [@doctrine, @service_container]
 
     #
     # Karma Forms.
     #
-    ccdn_forum_karma.post.rate.form.type:
-        class:  %ccdn_forum_karma.post.rate.form.type.class%
+    ccdn_forum_karma.form.type.rate_post:
+        class:  %ccdn_forum_karma.form.type.rate_post.class%
         arguments:  [@service_container, @doctrine]
-    ccdn_forum_karma.post.rate.form.handler:
-        class:  %ccdn_forum_karma.post.rate.form.handler.class%
+    ccdn_forum_karma.form.handler.rate_post:
+        class:  %ccdn_forum_karma.form.handler.rate_post.class%
         arguments:  [@form.factory, @service_container]
 
     #
     # Dashboard Integrator.
     #
-    ccdn_forum_karma.dashboard.integrator:
-        class: %ccdn_forum_karma.dashboard.integrator.class%
+    ccdn_forum_karma.component.dashboard.integrator:
+        class: %ccdn_forum_karma.component.dashboard.integrator.class%
         arguments: [@service_container]
         tags:
             - { name: ccdn_component_dashboard.integrator }

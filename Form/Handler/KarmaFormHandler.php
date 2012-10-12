@@ -75,7 +75,7 @@ class KarmaFormHandler
         $this->factory = $factory;
         $this->container = $container;
 
-        $this->manager = $this->container->get('ccdn_forum_karma.karma.manager');
+        $this->manager = $this->container->get('ccdn_forum_karma.manager.karma');
 
         $this->request = $container->get('request');
     }
@@ -133,7 +133,7 @@ class KarmaFormHandler
     {
 
         if (! $this->form) {
-            $karmaType = $this->container->get('ccdn_forum_karma.post.rate.form.type');
+            $karmaType = $this->container->get('ccdn_forum_karma.form.type.rate_post');
             $karmaType->setDefaultValues($this->defaults);
 
             $this->form = $this->factory->create($karmaType);

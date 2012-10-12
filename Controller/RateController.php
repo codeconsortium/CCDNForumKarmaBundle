@@ -43,7 +43,7 @@ class RateController extends ContainerAware
 
         $user = $this->container->get('security.context')->getToken()->getUser();
 
-        $post = $this->container->get('ccdn_forum_forum.post.repository')->findPostForEditing($postId);
+        $post = $this->container->get('ccdn_forum_forum.repository.post')->findPostForEditing($postId);
 
         if (( ! $post)
         || ( ! is_object($post->getTopic()) && $post->getTopic() instanceof Topic)
@@ -64,7 +64,7 @@ class RateController extends ContainerAware
         //
         $options = array('post' => $post, 'for_user' => $post->getCreatedBy(), 'by_user' => $user);
 
-        $formHandler = $this->container->get('ccdn_forum_karma.post.rate.form.handler')->setDefaultValues($options);
+        $formHandler = $this->container->get('ccdn_forum_karma.form.handler.rate_post')->setDefaultValues($options);
 
         if ($formHandler->process()) {
             $this->container->get('session')->setFlash('success', $this->container->get('translator')->trans('ccdn_forum_karma.flash.karma.rate.success', array('%topic_title%' => $post->getTopic()->getTitle(), '%post_id%' => $post->getId()), 'CCDNForumKarmaBundle'));

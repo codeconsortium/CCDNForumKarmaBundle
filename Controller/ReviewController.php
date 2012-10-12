@@ -40,7 +40,7 @@ class ReviewController extends ContainerAware
 
         $user = $this->container->get('security.context')->getToken()->getUser();
 
-        $karmaPager = $this->container->get('ccdn_forum_karma.karma.repository')->findKarmaForUserById($user->getId());
+        $karmaPager = $this->container->get('ccdn_forum_karma.repository.karma')->findKarmaForUserById($user->getId());
 
         $karmaPerPage = $this->container->getParameter('ccdn_forum_karma.review.review_all.reviews_per_page');
         $karmaPager->setMaxPerPage($karmaPerPage);
@@ -49,7 +49,7 @@ class ReviewController extends ContainerAware
         //
         // Get registry for user
         //
-        $registries = $this->container->get('ccdn_forum_forum.registry.manager')->getRegistriesForUsersAsArray(array($user->getId()));
+        $registries = $this->container->get('ccdn_forum_forum.manager.registry')->getRegistriesForUsersAsArray(array($user->getId()));
 
         // setup crumb trail.
         $crumbs = $this->container->get('ccdn_component_crumb.trail')
