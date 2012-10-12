@@ -13,7 +13,6 @@ Installing CCDNForum KarmaBundle 1.2
 7. [CCDNComponent DashboardBundle](http://github.com/codeconsortium/DashboardBundle/tree/v1.2).
 8. [CCDNForum ForumBundle](http://github.com/codeconsortium/CCDNForumForumBundle/tree/v1.2).
 9. [CCDNForum AdminBundle](http://github.com/codeconsortium/CCDNForumKarmaBundle/tree/v1.2).
-10. [CCDNForum ModeratorBundle](http://github.com/codeconsortium/CCDNForumModeratorBundle/tree/v1.2).
 
 ## Installation:
 
