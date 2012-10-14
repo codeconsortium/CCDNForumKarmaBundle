@@ -1,11 +1,11 @@
-{% extends param('ccdn_forum_karma.review.review_all.layout_template') %}
+{% extends ccdn_forum_karma.review.review_all.layout_template %}
 
 {% block stylesheets %}
 	{{ parent() }}
 	<link href="{{- asset('bundles/ccdncomponentbbcode/css/bbcode.css') -}}" rel="stylesheet" type="text/css">
 {% endblock %}
 
-{% block title %}{{- truncDot('ccdn_forum_karma.title.karma.review' | trans({}, 'CCDNForumKarmaBundle'), param('ccdn_forum_karma.seo.title_length')) -}}{% endblock %}
+{% block title %}{{- truncDot('ccdn_forum_karma.title.karma.review' | trans({}, 'CCDNForumKarmaBundle'), ccdn_forum_karma.seo.title_length) -}}{% endblock %}
 
 {% block sidebar %}
 	{{ parent() }}
@@ -72,18 +72,18 @@
 				<td class="left">
 					{%- if review.getPost() -%}
 						{%- if review.getPost().getTopic() -%}
-							{{- truncDot(review.getPost().getTopic().getTitle(), param('ccdn_forum_karma.review.review_all.topic_title_truncate')) -}}
+							{{- truncDot(review.getPost().getTopic().getTitle(), ccdn_forum_karma.review.review_all.topic_title_truncate) -}}
 						{%- endif -%}
 					{%- endif -%}
 				</td>
 				<td class="center">
-					<abbr class="timestamper" title="{{- review.getPostedDate |date('Y-m-d H:i:s T Z', 'Europe/London') -}}">{{- review.getPostedDate |date(param('ccdn_forum_karma.review.review_all.rating_datetime_format')) -}}</abbr>
+					<abbr class="timestamper" title="{{- review.getPostedDate |date('Y-m-d H:i:s T Z', 'Europe/London') -}}">{{- review.getPostedDate |date(ccdn_forum_karma.review.review_all.rating_datetime_format) -}}</abbr>
 				</td>
 			</tr>
 			<tr class="{{- cycle(['row_odd', 'row_even'], row) -}}">
 				<td class="left" colspan="5">
 					<span class="common_body">
-						{{- BBCode(review.comment | raw, param('ccdn_forum_karma.review.review_all.enable_bb_parser')) | raw -}}
+						{{- BBCode(review.comment | raw, ccdn_forum_karma.review.review_all.enable_bb_parser) | raw -}}
 						<br>
 					</span>
 				</td>

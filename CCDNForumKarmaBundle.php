@@ -22,4 +22,35 @@ use Symfony\Component\HttpKernel\Bundle\Bundle;
  */
 class CCDNForumKarmaBundle extends Bundle
 {
+	
+	/**
+	 *
+	 * @access public
+	 */
+	public function boot()
+	{
+		$twig = $this->container->get('twig');	
+		$twig->addGlobal('ccdn_forum_karma', array(
+			'seo' => array(
+				'title_length' => $this->container->getParameter('ccdn_forum_karma.seo.title_length'),
+			),
+			'rate' => array(
+				'rate' => array(
+					'layout_template' => $this->container->getParameter('ccdn_forum_karma.rate.rate.layout_template'),
+					'form_theme' => $this->container->getParameter('ccdn_forum_karma.rate.rate.form_theme'),
+					'enable_bb_editor' => $this->container->getParameter('ccdn_forum_karma.rate.rate.enable_bb_editor'),
+				),
+			),
+			'review' => array(
+				'review_all' => array(
+					'layout_template' => $this->container->getParameter('ccdn_forum_karma.review.review_all.layout_template'),
+					'topic_title_truncate' => $this->container->getParameter('ccdn_forum_karma.review.review_all.topic_title_truncate'),
+					'rating_datetime_format' => $this->container->getParameter('ccdn_forum_karma.review.review_all.rating_datetime_format'),
+					'enable_bb_parser' => $this->container->getParameter('ccdn_forum_karma.review.review_all.enable_bb_parser'),
+				),
+			),
+			
+		));
+	}
+	
 }
