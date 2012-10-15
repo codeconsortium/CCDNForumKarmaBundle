@@ -29,7 +29,7 @@ class RateController extends ContainerAware
     /**
      *
      * @access public
-     * @param Int $postId
+     * @param int $postId
      * @return RedirectResponse|RenderResponse
      */
     public function rateAction($postId)
@@ -96,7 +96,7 @@ class RateController extends ContainerAware
     /**
      *
      * @access protected
-     * @return String
+     * @return string
      */
     protected function getEngine()
     {

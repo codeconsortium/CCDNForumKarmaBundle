@@ -27,6 +27,11 @@ use CCDNForum\KarmaBundle\Entity\Karma;
 class LoadUserData extends AbstractFixture implements OrderedFixtureInterface
 {
 
+	/**
+	 *
+	 * @access public
+	 * @param ObjectManager $manager
+	 */
     public function load(ObjectManager $manager)
     {
 	
@@ -43,6 +48,11 @@ class LoadUserData extends AbstractFixture implements OrderedFixtureInterface
 		$manager->flush();		
     }
 
+	/**
+	 *
+	 * @access public
+	 * @return int
+	 */
 	public function getOrder()
 	{
 		return 5;

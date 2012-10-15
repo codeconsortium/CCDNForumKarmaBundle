@@ -18,7 +18,7 @@ class KarmaRepository extends EntityRepository
     /**
      *
      * @access public
-     * @param Int $userId
+     * @param int $userId
      */
     public function findKarmaForUserById($userId)
     {
@@ -41,7 +41,7 @@ class KarmaRepository extends EntityRepository
     /**
      *
      * @access public
- 	 * @param Int $userId
+ 	 * @param int $userId
      */
     public function getKarmaCountForUserById($userId)
     {

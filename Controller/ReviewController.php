@@ -29,7 +29,7 @@ class ReviewController extends ContainerAware
      *
      *
      * @access public
-     * @param  Int $page
+     * @param  int $page
      * @return RedirectResponse|RenderResponse
      */
     public function showAction($page)
@@ -67,7 +67,7 @@ class ReviewController extends ContainerAware
     /**
      *
      * @access protected
-     * @return String
+     * @return string
      */
     protected function getEngine()
     {

@@ -27,8 +27,8 @@ class KarmaManager extends BaseManager implements ManagerInterface
     /**
      *
      * @access public
-     * @param $karma
-     * @return $this
+     * @param Karma $karma
+     * @return self
      */
     public function insert($karma)
     {
