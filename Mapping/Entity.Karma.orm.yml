@@ -1,0 +1,39 @@
+CCDNForum\KarmaBundle\Entity\Karma:
+    type: entity
+    table: CC_Forum_Karma
+    id:
+        id:
+            type: integer
+            generator: { strategy: AUTO }
+    fields:
+        postedDate:
+            type: datetime
+            name: "posted_date"
+            nullable: true
+        comment:
+            type: text
+            nullable: false
+        isPositive:
+            type: bool
+            name: "is_positive"
+            nullable: false
+    manyToOne:
+        post:
+            targetEntity: "CCDNForum\ForumBundle\Entity\Post"
+            cascade: ["persist"]
+            joinColumn:
+                name: fk_post_id
+                referencedColumnName: id
+                onDelete: SET NULL
+        ratingForUser:
+            targetEntity: "CCDNUser\UserBundle\Entity\User"
+            joinColumn:
+                name: fk_rating_for_user_id
+                referencedColumnName: id
+                onDelete: SET NULL
+        ratingByUser:
+            targetEntity: "CCDNUser\UserBundle\Entity\User"
+            joinColumn:
+                name: fk_rating_by_user_id
+                referencedColumnName: id
+                onDelete: SET NULL

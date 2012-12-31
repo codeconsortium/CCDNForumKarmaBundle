@@ -14,46 +14,51 @@
 namespace CCDNForum\KarmaBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
-use Symfony\Component\Security\Core\User\UserInterface;
 
 /**
  * @ORM\Entity(repositoryClass="CCDNForum\KarmaBundle\Repository\KarmaRepository")
+ * @ORM\Table(name="CC_Forum_Karma")
  */
 class Karma
 {
 	
     /**
-     * @var int $id
+     * @ORM\Id
+     * @ORM\Column(type="integer")
+     * @ORM\GeneratedValue(strategy="AUTO")
      */
     protected $id;
 
     /**
-     * @var Post $post
+     * @ORM\ManyToOne(targetEntity="CCDNForum\ForumBundle\Entity\Post", cascade={"persist"})
+     * @ORM\JoinColumn(name="fk_post_id", referencedColumnName="id", onDelete="SET NULL")
      */
     protected $post;
 
     /**
-     * @var User $ratingForUser
+     * @ORM\ManyToOne(targetEntity="CCDNUser\UserBundle\Entity\User")
+     * @ORM\JoinColumn(name="fk_rating_for_user_id", referencedColumnName="id", onDelete="SET NULL")
      */
     protected $ratingForUser;
 
     /**
-     * @var User $ratingByUser
+     * @ORM\ManyToOne(targetEntity="CCDNUser\UserBundle\Entity\User")
+     * @ORM\JoinColumn(name="fk_rating_by_user_id", referencedColumnName="id", onDelete="SET NULL")
      */
     protected $ratingByUser;
 
     /**
-     * @var \DateTime $postedDate
+     * @ORM\Column(type="datetime", name="posted_date", nullable=true)
      */
     protected $postedDate;
 
     /**
-     * @var string $comment
+     * @ORM\Column(type="text", nullable=false)
      */
     protected $comment;
 
     /**
-     * @var bool $isPositive
+     * @ORM\Column(type="boolean", name="is_positive", nullable=false)
      */
     protected $isPositive = false;
 
@@ -150,9 +155,9 @@ class Karma
     /**
      * Set ratingForUser
      *
-     * @param Symfony\Component\Security\Core\User\UserInterface $ratingForUser
+     * @param CCDNUser\UserBundle\Entity\User $ratingForUser
      */
-    public function setRatingForUser(Symfony\Component\Security\Core\User\UserInterface $ratingForUser = null)
+    public function setRatingForUser(\CCDNUser\UserBundle\Entity\User $ratingForUser = null)
     {
         $this->ratingForUser = $ratingForUser;
     }
@@ -160,7 +165,7 @@ class Karma
     /**
      * Get ratingForUser
      *
-     * @return Symfony\Component\Security\Core\User\UserInterface
+     * @return CCDNUser\UserBundle\Entity\User
      */
     public function getRatingForUser()
     {
@@ -170,9 +175,9 @@ class Karma
     /**
      * Set postedBy
      *
-     * @param Symfony\Component\Security\Core\User\UserInterface $postedBy
+     * @param CCDNUser\UserBundle\Entity\User $postedBy
      */
-    public function setPostedBy(Symfony\Component\Security\Core\User\UserInterface $postedBy = null)
+    public function setPostedBy(\CCDNUser\UserBundle\Entity\User $postedBy = null)
     {
         $this->postedBy = $postedBy;
     }
@@ -180,7 +185,7 @@ class Karma
     /**
      * Get postedBy
      *
-     * @return Symfony\Component\Security\Core\User\UserInterface
+     * @return CCDNUser\UserBundle\Entity\User
      */
     public function getPostedBy()
     {
@@ -190,9 +195,9 @@ class Karma
     /**
      * Set ratingByUser
      *
-     * @param Symfony\Component\Security\Core\User\UserInterface $ratingByUser
+     * @param CCDNUser\UserBundle\Entity\User $ratingByUser
      */
-    public function setRatingByUser(Symfony\Component\Security\Core\User\UserInterface $ratingByUser = null)
+    public function setRatingByUser(\CCDNUser\UserBundle\Entity\User $ratingByUser = null)
     {
         $this->ratingByUser = $ratingByUser;
     }
@@ -200,7 +205,7 @@ class Karma
     /**
      * Get ratingByUser
      *
-     * @return Symfony\Component\Security\Core\User\UserInterface
+     * @return CCDNUser\UserBundle\Entity\User
      */
     public function getRatingByUser()
     {
