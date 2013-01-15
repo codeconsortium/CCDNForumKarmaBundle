@@ -17,7 +17,7 @@ CCDNForum\KarmaBundle\Entity\Karma:
             type: boolean
             name: "is_positive"
             nullable: false
-    manyToOne:
+#    manyToOne:
 #        post:
 #            targetEntity: "CCDNForum\ForumBundle\Entity\Post"
 #            cascade: ["persist"]
