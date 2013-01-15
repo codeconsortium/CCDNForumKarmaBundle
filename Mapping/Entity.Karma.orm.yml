@@ -14,26 +14,26 @@ CCDNForum\KarmaBundle\Entity\Karma:
             type: text
             nullable: false
         isPositive:
-            type: bool
+            type: boolean
             name: "is_positive"
             nullable: false
     manyToOne:
-        post:
-            targetEntity: "CCDNForum\ForumBundle\Entity\Post"
-            cascade: ["persist"]
-            joinColumn:
-                name: fk_post_id
-                referencedColumnName: id
-                onDelete: SET NULL
-        ratingForUser:
-            targetEntity: "CCDNUser\UserBundle\Entity\User"
-            joinColumn:
-                name: fk_rating_for_user_id
-                referencedColumnName: id
-                onDelete: SET NULL
-        ratingByUser:
-            targetEntity: "CCDNUser\UserBundle\Entity\User"
-            joinColumn:
-                name: fk_rating_by_user_id
-                referencedColumnName: id
-                onDelete: SET NULL
+#        post:
+#            targetEntity: "CCDNForum\ForumBundle\Entity\Post"
+#            cascade: ["persist"]
+#            joinColumn:
+#                name: fk_post_id
+#                referencedColumnName: id
+#                onDelete: SET NULL
+#        ratingForUser:
+#            targetEntity: "CCDNUser\UserBundle\Entity\User"
+#            joinColumn:
+#                name: fk_rating_for_user_id
+#                referencedColumnName: id
+#                onDelete: SET NULL
+#        ratingByUser:
+#            targetEntity: "CCDNUser\UserBundle\Entity\User"
+#            joinColumn:
+#                name: fk_rating_by_user_id
+#                referencedColumnName: id
+#                onDelete: SET NULL
