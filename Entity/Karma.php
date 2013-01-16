@@ -16,6 +16,8 @@ namespace CCDNForum\KarmaBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Security\Core\User\UserInterface;
 
+use CCDNForum\ForumBundle\Entity\Post;
+
 /**
  * @ORM\Entity(repositoryClass="CCDNForum\KarmaBundle\Repository\KarmaRepository")
  */
@@ -33,12 +35,12 @@ class Karma
     protected $post;
 
     /**
-     * @var User $ratingForUser
+     * @var UserInterface $ratingForUser
      */
     protected $ratingForUser;
 
     /**
-     * @var User $ratingByUser
+     * @var UserInterface $ratingByUser
      */
     protected $ratingByUser;
 
@@ -70,7 +72,7 @@ class Karma
     /**
      * Set postedDate
      *
-     * @param datetime $postedDate
+     * @param \Datetime $postedDate
      */
     public function setPostedDate($postedDate)
     {
@@ -80,7 +82,7 @@ class Karma
     /**
      * Get postedDate
      *
-     * @return datetime
+     * @return \Datetime
      */
     public function getPostedDate()
     {
@@ -90,7 +92,7 @@ class Karma
     /**
      * Set comment
      *
-     * @param text $comment
+     * @param string $comment
      */
     public function setComment($comment)
     {
@@ -100,7 +102,7 @@ class Karma
     /**
      * Get comment
      *
-     * @return text
+     * @return string
      */
     public function getComment()
     {
@@ -130,9 +132,9 @@ class Karma
     /**
      * Set post
      *
-     * @param CCDNForum\ForumBundle\Entity\Post $post
+     * @param Post $post
      */
-    public function setPost(\CCDNForum\ForumBundle\Entity\Post $post = null)
+    public function setPost(Post $post = null)
     {
         $this->post = $post;
     }
@@ -140,7 +142,7 @@ class Karma
     /**
      * Get post
      *
-     * @return CCDNForum\ForumBundle\Entity\Post
+     * @return Post
      */
     public function getPost()
     {
@@ -150,9 +152,9 @@ class Karma
     /**
      * Set ratingForUser
      *
-     * @param Symfony\Component\Security\Core\User\UserInterface $ratingForUser
+     * @param UserInterface $ratingForUser
      */
-    public function setRatingForUser(Symfony\Component\Security\Core\User\UserInterface $ratingForUser = null)
+    public function setRatingForUser(UserInterface $ratingForUser = null)
     {
         $this->ratingForUser = $ratingForUser;
     }
@@ -160,7 +162,7 @@ class Karma
     /**
      * Get ratingForUser
      *
-     * @return Symfony\Component\Security\Core\User\UserInterface
+     * @return UserInterface
      */
     public function getRatingForUser()
     {
@@ -170,9 +172,9 @@ class Karma
     /**
      * Set postedBy
      *
-     * @param Symfony\Component\Security\Core\User\UserInterface $postedBy
+     * @param UserInterface $postedBy
      */
-    public function setPostedBy(Symfony\Component\Security\Core\User\UserInterface $postedBy = null)
+    public function setPostedBy(UserInterface $postedBy = null)
     {
         $this->postedBy = $postedBy;
     }
@@ -180,7 +182,7 @@ class Karma
     /**
      * Get postedBy
      *
-     * @return Symfony\Component\Security\Core\User\UserInterface
+     * @return UserInterface
      */
     public function getPostedBy()
     {
@@ -190,9 +192,9 @@ class Karma
     /**
      * Set ratingByUser
      *
-     * @param Symfony\Component\Security\Core\User\UserInterface $ratingByUser
+     * @param UserInterface $ratingByUser
      */
-    public function setRatingByUser(Symfony\Component\Security\Core\User\UserInterface $ratingByUser = null)
+    public function setRatingByUser(UserInterface $ratingByUser = null)
     {
         $this->ratingByUser = $ratingByUser;
     }
@@ -200,7 +202,7 @@ class Karma
     /**
      * Get ratingByUser
      *
-     * @return Symfony\Component\Security\Core\User\UserInterface
+     * @return UserInterface
      */
     public function getRatingByUser()
     {

@@ -39,7 +39,7 @@ class LoadUserData extends AbstractFixture implements OrderedFixtureInterface
 		
 	    $karma->setPost($manager->merge($this->getReference('forum-post')));
 	    $karma->setRatingForUser($manager->merge($this->getReference('user-admin')));
-	    $karma->setRatingByUser($manager->merge($this->getReference('user-test')));
+	    $karma->setRatingByUser($manager->merge($this->getReference('user-admin')));
 	    $karma->setPostedDate(new \DateTime());
 	    $karma->setComment('Informative post. Thumbs up!');
 	    $karma->setIsPositive(true);
